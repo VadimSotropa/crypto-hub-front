@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #1C252A;
+    margin: 0 200px;
+    font-family: 'Fira Code', monospace;
+}
+
+.NavContainer{
+    padding-top: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+}
+
+.Nav-items{
+    display: flex;
+   gap: 45px;
+   
+}
+
+.link{
+    color: white;
+   text-decoration: none;
+   position: relative;
+   font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 18px;
+}
+
+  .link:hover {
+    color: white;
+  }
+
+  .link::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #FCC81C;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .link:hover::before {
+    transform: scaleX(1);
+  }
+
+.signupBtn{
+    padding: 5px 10px;
+    
+background: #FFFFFF;
+border-radius: 2px;
+font-family: 'Fira Code';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 18px;
+text-decoration: none;
+color: #1C252A;
+
+}
+
+.registerBtns{
+    display: flex;
+    gap: 7px;
+}
+
+.login{
+    padding: 5px 10px;
+gap: 10px;
+
+width: 62px;
+height: 28px;
+
+background: #FCC81C;
+border-radius: 2px;
+font-family: 'Fira Code';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 18px;
+
+color: #1C252A;
+text-decoration: none;
+}
