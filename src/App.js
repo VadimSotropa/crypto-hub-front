@@ -1,5 +1,7 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from './store';
 
 import Home from './pages/Home'
 import Favorite from './pages/Favorite'
@@ -10,16 +12,18 @@ import Signup from './pages/Signup'
 
 function App() {
   return (
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/Favorite" element={<Favorite />} />
-      <Route path="/Exchange" element={<Exchange />} />
-      <Route path="/AllCrypto" element={<AllCrypto />} />
-      <Route path="/Login" element={<Login />} />
-      <Route path="/Signup" element={<Signup />} />
-    </Routes>
-  </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Favorite" element={<Favorite />} />
+          <Route path="/Exchange" element={<Exchange />} />
+          <Route path="/AllCrypto" element={<AllCrypto />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Signup" element={<Signup />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

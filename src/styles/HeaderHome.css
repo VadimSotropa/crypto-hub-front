@@ -1,35 +1,30 @@
-
 body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #1c252a;
-    margin: 0 200px;
-    font-family: "Fira Code", monospace;
-    
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #1c252a;
+  margin: 0 200px;
+  font-family: "Fira Code", monospace;
+}
 
-  .container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 10px;
-    gap: 5px;
-  }
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  gap: 5px;
+}
 
-  .titleMain{
-    font-size: 29px;
-color: white;
-font-style: normal;
-font-weight: 600;
-width: 778px;
-height: 47px;
+.titleMain {
+  font-size: 29px;
+  color: white;
+  font-style: normal;
+  font-weight: 600;
+  width: 778px;
+  height: 47px;
+}
 
-  }
-
-  .svg{
-    width: 414px;
-height: 164px;
-  }
-
- 
+.svg {
+  width: 414px;
+  height: 164px;
+}

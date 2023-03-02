@@ -1,0 +1,105 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #1c252a;
+  margin: 0 200px;
+  font-family: "Fira Code", monospace;
+}
+
+.containerFilter {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  justify-content: space-between;
+
+}
+.imputContainer {
+  border-bottom: solid 2px #fcc81c;
+  width: 213px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.serchImput {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  background-color: transparent;
+  caret-color: white;
+  border: none;
+  color: white;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+.inputSearch {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 0;
+}
+
+.itemBTN{
+    font-family: 'Fira Code';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    background-color: transparent;
+    border: 1px solid #FFFFFF !important;
+    border-radius: 16px;
+    color: white;
+    height: 30px;
+cursor: pointer;
+}
+
+.itemBTN:hover{
+    color: black;
+    background-color: white;
+    border: none;
+}
+
+.btnContianer{
+    display: flex;
+    gap: 10px;
+    width: 430px;
+}
+
+.curencyList{
+    border: 1px solid #FFFFFF;
+    border-radius: 16px;
+    width: 55px;
+    height: 30px;
+   color: white;
+   background-color: transparent;
+   padding: 6px 12px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.curencyList:hover{
+    color: black;
+    background-color: white;
+    border: none;
+}
+
+.curency-list{
+    border: none;
+}
