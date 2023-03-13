@@ -1,18 +1,28 @@
-import { useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from '../components/Navbar'
 import { Link } from "react-router-dom";
 import '../styles/signup.css'
+import { atom, useRecoilState } from 'recoil';
+import toast, { Toaster } from 'react-hot-toast';
+
+
+const userStateLogin = atom({
+  key: 'userStateLogin',
+  default: {
+    email: '',
+    password: '',
+    name: '',
+    token: '',
+    likedArticles: '',
+  },
+});
+const notify = () => toast.success('Loged succesful');
 
 export default function Register() {
   const navigate = useNavigate();
-
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-    name: "",
-  });
+  const [user, setUser] = useRecoilState(userStateLogin);
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -23,13 +33,37 @@ export default function Register() {
 
     try {
       const response = await axios.post(
-        "https://cryptohub-auth-app.herokuapp.com/login",
+        'https://cryptohub-auth-app.herokuapp.com/login',
         user
       );
-      console.log(response.data);
-      navigate("/Favorite");
+
+      // Retrieve the user's token from the login response
+      const { token } = response.data;
+
+      // Retrieve the user's name and email from the database using their email
+      const userData = await axios.get(
+        `https://cryptohub-auth-app.herokuapp.com/user/${user.email}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      localStorage.setItem('token', token);
+    localStorage.setItem('email', user.email);
+      // Update the state with the user's data
+      setUser({
+        ...user,
+        name: userData.data.name,
+        token,
+        likedArticles: userData.data.likedArticles,
+        
+      });
+      
+      navigate('/Favorite');
     } catch (error) {
       console.log(error.response.data);
+      toast.error('Frong email or password')
     }
   };
 
@@ -42,6 +76,7 @@ export default function Register() {
         <div>
         
           <input
+           suggested="username"
            className="imputItem"
             type="email"
             name="email"
@@ -53,6 +88,7 @@ export default function Register() {
         <div>
          
           <input
+          autoComplete="current-password"
            className="imputItem"
             type="password"
             name="password"
@@ -64,6 +100,7 @@ export default function Register() {
         
       <button className="submitBTN" type="submit">Login</button>
       </form>
+      <Toaster />
       <div className="toLogin">
    <span >Don’t have an account?</span> <Link  className="loginLink" to={"/Signup"}>Signup</Link>
     </div>
@@ -77,3 +114,5 @@ export default function Register() {
    </div>
   );
 }
+
+export { userStateLogin };

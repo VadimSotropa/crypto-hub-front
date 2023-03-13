@@ -1,0 +1,775 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+/* /* Mobile Devices / */
+@media only screen and (max-width: 480px) {
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+    body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #1C252A;
+        margin: 0 20px;
+        font-family: 'Fira Code', monospace;
+    }
+    
+    .one-crypto-container{
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-between;
+       
+        height: 232px;
+        margin-bottom: 5px;
+    }
+    
+    .one-crypto-left{
+       
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       gap: 20px;
+    }
+    .one-crypto-left-container{
+        display: flex;
+       align-items: flex-start;
+       flex-direction: column;
+       justify-content: center;
+      
+    }
+    
+    .one-crypto-days-change{
+       
+        display: flex;
+       flex-direction: row;
+       justify-content: center;
+       align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 50px;
+    
+    }
+    
+    .one-crypto-days-change button{
+        font-family: 'Fira Code';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        background-color: transparent;
+        border: 1px solid #FFFFFF !important;
+        border-radius: 16px;
+        color: white;
+        height: 28px;
+    cursor: pointer;
+    flex-wrap: wrap;
+    }
+    
+    .one-crypto-days-change button:hover{
+        color: black;
+        background-color: white;
+        border: none;
+    }
+    
+    .one-crypto-image{
+      
+    width: auto;
+    height: 80px;
+    }
+    
+    .one-crypto-right{
+       
+        display: flex;
+       align-items: flex-end;
+       flex-direction: column;
+       justify-content: center;
+      
+    
+    }
+    
+    .one-crypto-price{
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .one-crypto-percent-positif{
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        padding: 5px;
+      margin: 0;
+      text-align: center;
+      background: #1a8917;
+      border-radius: 4px;
+      text-align: center;
+      font-family: "Fira Code";
+      font-style: normal;
+      font-weight: 500;
+        
+    }
+    
+    .one-crypto-percent-negatif{
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        padding: 5px;
+      margin: 0;
+      text-align: center;
+      background: #b30000;
+      border-radius: 4px;
+      text-align: center;
+      font-family: "Fira Code";
+      font-style: normal;
+      font-weight: 500;
+        
+    }
+    
+    .one-crypto-name{
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .one-crypto-symbol{
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        margin: 0;
+        padding: 0;
+        
+    }
+    
+    .one-crypto-star-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+    }
+}
+
+/* /* Tablets / */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+    body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #1C252A;
+        margin: 0 10px;
+        font-family: 'Fira Code', monospace;
+    }
+    
+    .one-crypto-container{
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+       
+        height: 232px;
+        margin-bottom: 5px;
+    }
+    
+    .one-crypto-left{
+       
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       gap: 10px;
+    }
+    .one-crypto-left-container{
+        display: flex;
+       align-items: flex-start;
+       flex-direction: column;
+       justify-content: center;
+      
+    }
+    
+    .one-crypto-days-change{
+       
+        display: flex;
+       flex-direction: row;
+       justify-content: center;
+       align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 50px;
+   
+    
+    }
+    
+    .one-crypto-days-change button{
+        font-family: 'Fira Code';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        background-color: transparent;
+        border: 1px solid #FFFFFF !important;
+        border-radius: 16px;
+        color: white;
+        height: 28px;
+    cursor: pointer;
+    }
+    
+    .one-crypto-days-change button:hover{
+        color: black;
+        background-color: white;
+        border: none;
+    }
+    
+    .one-crypto-image{
+      
+    width: auto;
+    height: 100px;
+    }
+    
+    .one-crypto-right{
+       
+        display: flex;
+       align-items: flex-end;
+       flex-direction: column;
+       justify-content: center;
+      
+    
+    }
+    
+    .one-crypto-price{
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .one-crypto-percent-positif{
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        padding: 5px;
+      margin: 0;
+      text-align: center;
+      background: #1a8917;
+      border-radius: 4px;
+      text-align: center;
+      font-family: "Fira Code";
+      font-style: normal;
+      font-weight: 500;
+        
+    }
+    
+    .one-crypto-percent-negatif{
+        color: white;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        padding: 5px;
+      margin: 0;
+      text-align: center;
+      background: #b30000;
+      border-radius: 4px;
+      text-align: center;
+      font-family: "Fira Code";
+      font-style: normal;
+      font-weight: 500;
+        
+    }
+    
+    .one-crypto-name{
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .one-crypto-symbol{
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        margin: 0;
+        padding: 0;
+        
+    }
+    
+    .one-crypto-star-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .one-crypto-star{
+        width: 25px;
+    }
+}
+
+/* /* Small Screens and Laptops / */
+@media only screen and (min-width: 769px) and (max-width: 1270px) {
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+    body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #1C252A;
+        margin: 0 20px;
+        font-family: 'Fira Code', monospace;
+    }
+    
+    .one-crypto-container{
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-between;
+       
+        height: 232px;
+        margin-bottom: 5px;
+    }
+    
+    .one-crypto-left{
+       
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       gap: 20px;
+    }
+    .one-crypto-left-container{
+        display: flex;
+       align-items: flex-start;
+       flex-direction: column;
+       justify-content: center;
+      
+    }
+    
+    .one-crypto-days-change{
+       
+        display: flex;
+       flex-direction: row;
+       justify-content: center;
+       align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 50px;
+    
+    }
+    
+    .one-crypto-days-change button{
+        font-family: 'Fira Code';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        background-color: transparent;
+        border: 1px solid #FFFFFF !important;
+        border-radius: 16px;
+        color: white;
+        height: 28px;
+    cursor: pointer;
+    }
+    
+    .one-crypto-days-change button:hover{
+        color: black;
+        background-color: white;
+        border: none;
+    }
+    
+    .one-crypto-image{
+      
+    width: auto;
+    height: 150px;
+    }
+    
+    .one-crypto-right{
+       
+        display: flex;
+       align-items: flex-end;
+       flex-direction: column;
+       justify-content: center;
+      
+    
+    }
+    
+    .one-crypto-price{
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .one-crypto-percent-positif{
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        padding: 5px;
+      margin: 0;
+      text-align: center;
+      background: #1a8917;
+      border-radius: 4px;
+      text-align: center;
+      font-family: "Fira Code";
+      font-style: normal;
+      font-weight: 500;
+        
+    }
+    
+    .one-crypto-percent-negatif{
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        padding: 5px;
+      margin: 0;
+      text-align: center;
+      background: #b30000;
+      border-radius: 4px;
+      text-align: center;
+      font-family: "Fira Code";
+      font-style: normal;
+      font-weight: 500;
+        
+    }
+    
+    .one-crypto-name{
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .one-crypto-symbol{
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        margin: 0;
+        padding: 0;
+        
+    }
+    
+    .one-crypto-star-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+    }
+    
+}
+
+/* /* Desktops and Large Screens / */
+@media only screen and (min-width: 1269px) and (max-width: 1501px) {
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+    body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #1C252A;
+        margin: 0 200px;
+        font-family: 'Fira Code', monospace;
+    }
+    
+    .one-crypto-container{
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-between;
+       
+        height: 232px;
+        margin-bottom: 5px;
+    }
+    
+    .one-crypto-left{
+       
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       gap: 20px;
+    }
+    .one-crypto-left-container{
+        display: flex;
+       align-items: flex-start;
+       flex-direction: column;
+       justify-content: center;
+      
+    }
+    
+    .one-crypto-days-change{
+       
+        display: flex;
+       flex-direction: row;
+       justify-content: center;
+       align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 50px;
+    
+    }
+    
+    .one-crypto-days-change button{
+        font-family: 'Fira Code';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        background-color: transparent;
+        border: 1px solid #FFFFFF !important;
+        border-radius: 16px;
+        color: white;
+        height: 28px;
+    cursor: pointer;
+    }
+    
+    .one-crypto-days-change button:hover{
+        color: black;
+        background-color: white;
+        border: none;
+    }
+    
+    .one-crypto-image{
+      
+    width: auto;
+    height: 150px;
+    }
+    
+    .one-crypto-right{
+       
+        display: flex;
+       align-items: flex-end;
+       flex-direction: column;
+       justify-content: center;
+      
+    
+    }
+    
+    .one-crypto-price{
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .one-crypto-percent-positif{
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        padding: 5px;
+      margin: 0;
+      text-align: center;
+      background: #1a8917;
+      border-radius: 4px;
+      text-align: center;
+      font-family: "Fira Code";
+      font-style: normal;
+      font-weight: 500;
+        
+    }
+    
+    .one-crypto-percent-negatif{
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        padding: 5px;
+      margin: 0;
+      text-align: center;
+      background: #b30000;
+      border-radius: 4px;
+      text-align: center;
+      font-family: "Fira Code";
+      font-style: normal;
+      font-weight: 500;
+        
+    }
+    
+    .one-crypto-name{
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .one-crypto-symbol{
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        margin: 0;
+        padding: 0;
+        
+    }
+    
+    .one-crypto-star-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+    }
+    
+}
+/* 
+/* Extra Large Screens and TV / */
+@media only screen and (min-width: 1501px) {
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+    body{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #1C252A;
+        margin: 0 200px;
+        font-family: 'Fira Code', monospace;
+    }
+    
+    .one-crypto-container{
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-between;
+       
+        height: 232px;
+        margin-bottom: 5px;
+    }
+    
+    .one-crypto-left{
+       
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       gap: 20px;
+    }
+    .one-crypto-left-container{
+        display: flex;
+       align-items: flex-start;
+       flex-direction: column;
+       justify-content: center;
+      
+    }
+    
+    .one-crypto-days-change{
+       
+        display: flex;
+       flex-direction: row;
+       justify-content: center;
+       align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 50px;
+    
+    }
+    
+    .one-crypto-days-change button{
+        font-family: 'Fira Code';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        background-color: transparent;
+        border: 1px solid #FFFFFF !important;
+        border-radius: 16px;
+        color: white;
+        height: 36px;
+    cursor: pointer;
+    }
+    
+    .one-crypto-days-change button:hover{
+        color: black;
+        background-color: white;
+        border: none;
+    }
+    
+    .one-crypto-image{
+      
+    width: auto;
+    height: 200px;
+    }
+    
+    .one-crypto-right{
+       
+        display: flex;
+       align-items: flex-end;
+       flex-direction: column;
+       justify-content: center;
+      
+    
+    }
+    
+    .one-crypto-price{
+        color: white;
+        font-size: 50px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .one-crypto-percent-positif{
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        padding: 5px;
+      margin: 0;
+      text-align: center;
+      background: #1a8917;
+      border-radius: 4px;
+      text-align: center;
+      font-family: "Fira Code";
+      font-style: normal;
+      font-weight: 500;
+        
+    }
+    
+    .one-crypto-percent-negatif{
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        padding: 5px;
+      margin: 0;
+      text-align: center;
+      background: #b30000;
+      border-radius: 4px;
+      text-align: center;
+      font-family: "Fira Code";
+      font-style: normal;
+      font-weight: 500;
+        
+    }
+    
+    .one-crypto-name{
+        color: white;
+        font-size: 50px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .one-crypto-symbol{
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        font-family: 'Fira Code', monospace;
+        margin: 0;
+        padding: 0;
+        
+    }
+    
+    .one-crypto-star-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 100px;
+    }
+    
+}

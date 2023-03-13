@@ -1,16 +1,46 @@
 import React, { useState, useEffect } from "react";
 import "../styles/CryptoList.css";
 import FilterBar from "./FilterBar";
-import { useDispatch } from "react-redux";
-import { addFavorite } from "../store/favorites";
+import { useRecoilState } from "recoil";
+import { userStateLogin } from "../pages/Login";
+import { FaStar } from "react-icons/fa";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
+import useAxios from "../hooks/useAxios";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
+  Legend,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import moment from "moment";
+import Skeleton from "../components/Skeleton";
+import { useNavigate } from 'react-router-dom';
 
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
+  Legend
+);
 
 function useCoinGeckoData() {
   const [cryptoData, setCryptoData] = useState([]);
 
   useEffect(() => {
     fetch(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=4&page=1&sparkline=false"
     )
       .then((response) => response.json())
       .then((data) => setCryptoData(data))
@@ -20,23 +50,40 @@ function useCoinGeckoData() {
   return cryptoData;
 }
 
-
-
 function CryptoItem({ crypto, currency }) {
-  const dispatch = useDispatch();
+  const [user, setUser] = useRecoilState(userStateLogin);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const email = localStorage.getItem('email');
+    setUser({ token, email });
+  }, [setUser]);
+  const [isLiked, setIsLiked] = useState(false);
 
-  const handleFavoriteClick = () => {
-    // Check if user is logged in
-    const token = localStorage.getItem("token");
-    if (!token) {
-      // User not logged in, show error message
-      alert("Please log in to add favorites");
-      return;
+  useEffect(() => {
+    const checkLikedStatus = async () => {
+      try {
+        const response = await axios.get(
+          `https://cryptohub-auth-app.herokuapp.com/user/${user.email}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        );
+
+        if (response.data.likedArticles.includes(crypto.id)) {
+          setIsLiked(true);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (user.token && user.likedArticles) {
+      checkLikedStatus();
     }
+  }, [crypto.id, user]);
 
-    // Dispatch addFavorite action with the crypto ID
-    dispatch(addFavorite(crypto.id));
-  };
   const price = parseFloat(crypto.current_price).toLocaleString("en-US", {
     style: "currency",
     currency: currency,
@@ -45,13 +92,104 @@ function CryptoItem({ crypto, currency }) {
     parseFloat(crypto.price_change_percentage_24h) * 1
   ).toFixed(2);
 
+  // function isCryptoLiked(crypto, user) {
+  //   if (user && user.likedArticles) {
+  //     return user.likedArticles.includes(crypto.id);
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
+  const handleLikeClick = () => {
+    if (!user) {
+      return;
+    }
+
+    if (isLiked) {
+      axios
+        .delete("https://cryptohub-auth-app.herokuapp.com/Like", {
+          data: { token: user.token, article: crypto.id },
+        })
+        .then((response) => {
+          console.log(response.data); // handle response data
+          setIsLiked(false);
+          setUser(response.data);
+        })
+        .catch((error) => {
+          console.error(error); // handle error
+        });
+    } else {
+      axios
+        .post("https://cryptohub-auth-app.herokuapp.com/Like", {
+          token: user.token,
+          article: crypto.id,
+        })
+        .then((response) => {
+          console.log(response.data); // handle response data
+          setIsLiked(true);
+          setUser(response.data);
+        })
+        .catch((error) => {
+          console.error(error); // handle error
+          toast.error("You need to login to add to favorit");
+        });
+    }
+  };
+
+  const HistoryChart = () => {
+    const { response } = useAxios(
+      `coins/${crypto.id}/market_chart?vs_currency=usd&days=1`
+    );
+
+    if (!response) {
+      return (
+        <div className="wrapper-container mt-8">
+          <Skeleton className="h-72 w-full mb-10" />
+        </div>
+      );
+    }
+    const coinChartData = response.prices.map((value) => ({
+      x: value[0],
+      y: value[1].toFixed(2),
+    }));
+
+    const options = {
+      type: "line",
+      responsive: true,
+    };
+    const data = {
+      labels: coinChartData.map((value) => moment(value.x).format("MMM DD")),
+      datasets: [
+        {
+          pointStyle: false,
+          label: crypto.id,
+          data: coinChartData.map((val) => val.y),
+          borderColor: "rgb(53, 162, 235)",
+          backgroundColor: "rgba(53, 162, 235, 0.5)",
+        },
+      ],
+    };
+
+    return (
+      <div>
+        <Line options={options} data={data} />
+      </div>
+    );
+  };
+
+  const navigate = useNavigate();
+
+  const handleCryptoClick = (id) => {
+    navigate(`/crypto/${id}`);
+  };
+
 
   return (
     <div className={percentChange >= 0 ? "crypto-item" : "crypto-item-negatif"}>
       <div className="crypto-item-info">
         <div className="crypto-item-left">
           <img src={crypto.image} alt="" className="crypto-item-img" />
-          <p className="ctypto-item-name">{crypto.name}</p>
+          <p className="ctypto-item-name" onClick={() => handleCryptoClick(crypto.id)}>{crypto.name}</p>
           <div className="crypto-item-more">
             <p className="crypto-item-abr">{crypto.symbol.toUpperCase()}</p>
             <p className="crypto-item-abr">24H</p>
@@ -69,39 +207,16 @@ function CryptoItem({ crypto, currency }) {
             {percentChange > 0 ? "+" : ""}
             {percentChange}%
           </p>
-          <svg
-            width="43"
-            height="43"
-            viewBox="0 0 43 43"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            onClick={handleFavoriteClick} // Add click handler to the SVG
-          >
-            <path
-              d="M25.9791 19.0813H17.0208M21.4999 14.7096V23.6679"
-              stroke='white'
-              stroke-width="3"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-             
-            />
-            <path
-              d="M30.1357 3.58334H12.8641C9.04783 3.58334 5.94824 6.70084 5.94824 10.4992V35.7438C5.94824 38.9688 8.25949 40.3304 11.0903 38.7717L19.8337 33.9163C20.7653 33.3967 22.2703 33.3967 23.1841 33.9163L31.9274 38.7717C34.7582 40.3483 37.0695 38.9867 37.0695 35.7438V10.4992C37.0516 6.70084 33.952 3.58334 30.1357 3.58334Z"
-              stroke='white'
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              
-            />
-            <path
-              d="M21.5 33.8688L18.406 31.0342L14.9661 33.7757L15.8582 29.3339L12.9667 26.4686L17.4383 26.1133L21.5 22.8799L25.5618 26.1133L30.0333 26.4686L27.1418 29.3339L28.0339 33.7757L24.594 31.0342L21.5 33.8688Z"
-              // Change fill based on isFavorite state
-            />
-          </svg>
+          <FaStar
+            color={isLiked ? "yellow" : "white"}
+            fontSize="35px"
+            onClick={handleLikeClick}
+          />
         </div>
       </div>
-      <div className="crypto-item-graph"></div>
+      <Toaster />
+      
+      <HistoryChart />
     </div>
   );
 }
@@ -181,7 +296,12 @@ export default function CryptoList() {
       />
       <div className="crypto-container-list" onScroll={handleScroll}>
         {convertedCrypto.map((crypto) => (
-          <CryptoItem key={crypto.id} crypto={crypto} currency={currency} /> // Pass currency as prop to CryptoItem
+          <CryptoItem
+            key={crypto.id}
+            crypto={crypto}
+            currency={currency}
+            user
+          /> // Pass currency as prop to CryptoItem
         ))}
       </div>
     </div>

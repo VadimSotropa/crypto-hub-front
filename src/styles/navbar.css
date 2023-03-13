@@ -1,4 +1,565 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+/* styles for mobile devices */
+@media only screen and (max-width: 480px) {
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+
+  body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #1C252A;
+      margin: 0 20px;
+      font-family: 'Fira Code', monospace;
+      
+  }
+  
+  .NavContainer{
+    padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 40px;
+      position: fixed;
+      top: 0;
+      background-color: #1C252A;
+      width: 100%;
+      padding-bottom: 5px;
+
+  }
+  .three-bar-menu{
+    padding-right: 30px;
+  }
+  .Nav-items{
+      display: flex;
+    
+     
+  }
+  
+  .image-logo{
+    height: auto;
+    width: 100px;
+
+  
+  }
+  
+  .link{
+      color: white;
+     text-decoration: none;
+     position: relative;
+     font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  display: none;
+  }
+  
+    .link:hover {
+      color: white;
+    }
+  
+    .link::before {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #FCC81C;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+  
+    .link:hover::before {
+      transform: scaleX(1);
+    }
+  
+  .signupBtn{
+      padding: 5px 10px;
+      
+  background: #FFFFFF;
+  border-radius: 2px;
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  text-decoration: none;
+  color: #1C252A;
+  display: none;
+  }
+  
+  .registerBtns{
+      display: none;
+      gap: 7px;
+  }
+  
+  .login{
+    display: none;
+      padding: 5px 10px;
+  gap: 10px;
+  
+  width: 62px;
+  height: 28px;
+  
+  background: #FCC81C;
+  border-radius: 2px;
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  
+  color: #1C252A;
+  text-decoration: none;
+  }
+  
+  .logoutBtn{
+    width: 62px;
+    height: 28px;
+  background: #FCC81C;
+  border-radius: 2px;
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  border: none;
+  cursor: pointer;
+  color: #1C252A;
+  text-decoration: none;
+  }
+
+  .mobileMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background-color: white;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    }
+    
+    .mobileMenuHeader {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    }
+    
+    .mobileMenuLogo {
+    width: 150px;
+    }
+    
+    .closeMobileMenuBtn {
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    margin-right: 20px;
+    }
+    
+    .mobileMenuItems {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+    gap: 30px;
+   
+    }
+    
+    .mobileLink {
+    font-size: 24px;
+    color: #1c252a;
+    text-decoration: none;
+    }
+    
+    .mobileSignupBtn {
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-family: "Fira Code";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    text-decoration: none;
+    color: #1c252a;
+    border: 1px solid #fcc81c;
+    }
+    
+    .mobileLogin {
+    padding: 5px 10px;
+    width: 62px;
+    height: 28px;
+    background: #fcc81c;
+    border-radius: 2px;
+    font-family: "Fira Code";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: #1c252a;
+    text-decoration: none;
+    text-align: center;
+    }
+
+    .mobile-login-container{
+      display: flex;
+      gap: 40px;
+      flex-direction: row;
+    }
+}
+
+/* styles for tablets */
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+
+  body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #1C252A;
+      margin: 0 20px;
+      font-family: 'Fira Code', monospace;
+      
+  }
+  
+  .NavContainer{
+    padding-top: 15px;
+      display: flex;
+    justify-content: space-between;
+      align-items: center;
+      height: 40px;
+      position: fixed;
+      top: 0;
+      background-color: #1C252A;
+      width: 95%;
+      padding-bottom: 5px;
+ 
+  }
+  
+  .Nav-items{
+      display: flex;
+    
+     
+  }
+  
+  .image-logo{
+    height: auto;
+    width: 150px;
+   margin-left: -30px;
+  
+  }
+  
+  .link{
+      color: white;
+     text-decoration: none;
+     position: relative;
+     font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  display: none;
+  }
+  
+    .link:hover {
+      color: white;
+    }
+  
+    .link::before {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #FCC81C;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+  
+    .link:hover::before {
+      transform: scaleX(1);
+    }
+  
+  .signupBtn{
+      padding: 5px 10px;
+      
+  background: #FFFFFF;
+  border-radius: 2px;
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  text-decoration: none;
+  color: #1C252A;
+  display: none;
+  }
+  
+  .registerBtns{
+      display: none;
+      gap: 7px;
+  }
+  
+  .login{
+    display: none;
+      padding: 5px 10px;
+  gap: 10px;
+  
+  width: 62px;
+  height: 28px;
+  
+  background: #FCC81C;
+  border-radius: 2px;
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  
+  color: #1C252A;
+  text-decoration: none;
+  }
+  
+  .logoutBtn{
+    width: 62px;
+    height: 28px;
+  background: #FCC81C;
+  border-radius: 2px;
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  border: none;
+  cursor: pointer;
+  color: #1C252A;
+  text-decoration: none;
+  }
+
+  .mobileMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background-color: white;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    }
+    
+    .mobileMenuHeader {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    }
+    
+    .mobileMenuLogo {
+    width: 150px;
+    }
+    
+    .closeMobileMenuBtn {
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    margin-right: 20px;
+    }
+    
+    .mobileMenuItems {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+    gap: 30px;
+   
+    }
+    
+    .mobileLink {
+    font-size: 24px;
+    color: #1c252a;
+    text-decoration: none;
+    }
+    
+    .mobileSignupBtn {
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-family: "Fira Code";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    text-decoration: none;
+    color: #1c252a;
+    border: 1px solid #fcc81c;
+    }
+    
+    .mobileLogin {
+    padding: 5px 10px;
+    width: 62px;
+    height: 28px;
+    background: #fcc81c;
+    border-radius: 2px;
+    font-family: "Fira Code";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: #1c252a;
+    text-decoration: none;
+    text-align: center;
+    }
+
+    .mobile-login-container{
+      display: flex;
+      gap: 40px;
+      flex-direction: row;
+    }
+}
+
+/* Small Screens and Laptops */
+@media only screen and (min-width: 769px) and (max-width: 1270px) {
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+
+  body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #1C252A;
+      margin: 0 20px;
+      font-family: 'Fira Code', monospace;
+  }
+  
+  .NavContainer{
+      padding-top: 45px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 40px;
+  }
+  
+  .Nav-items{
+      display: flex;
+     gap: 45px;
+     
+  }
+  
+  .image-logo{
+    width: 150px;
+   margin-left: -30px;
+  
+  }
+  
+  .link{
+      color: white;
+     text-decoration: none;
+     position: relative;
+     font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  }
+  
+    .link:hover {
+      color: white;
+    }
+  
+    .link::before {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #FCC81C;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+  
+    .link:hover::before {
+      transform: scaleX(1);
+    }
+  
+  .signupBtn{
+      padding: 5px 10px;
+      
+  background: #FFFFFF;
+  border-radius: 2px;
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  text-decoration: none;
+  color: #1C252A;
+  
+  }
+  
+  .registerBtns{
+      display: flex;
+      gap: 7px;
+  }
+  
+  .login{
+      padding: 5px 10px;
+  gap: 10px;
+  
+  width: 62px;
+  height: 28px;
+  
+  background: #FCC81C;
+  border-radius: 2px;
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  
+  color: #1C252A;
+  text-decoration: none;
+  }
+  
+  .logoutBtn{
+    width: 62px;
+    height: 28px;
+  background: #FCC81C;
+  border-radius: 2px;
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  border: none;
+  cursor: pointer;
+  color: #1C252A;
+  text-decoration: none;
+  }
+
+  .three-bar-menu{
+    display: none;
+  }
+  
+    
+}
+
+/* Desktops and Large Screens */
+@media only screen and (min-width: 1269px) and (max-width: 1501px) {
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
 body{
     margin: 0;
@@ -21,6 +582,12 @@ body{
     display: flex;
    gap: 45px;
    
+}
+
+.image-logo{
+  width: 150px;
+ margin-left: -30px;
+
 }
 
 .link{
@@ -91,4 +658,150 @@ line-height: 18px;
 
 color: #1C252A;
 text-decoration: none;
+}
+
+.logoutBtn{
+  width: 62px;
+  height: 28px;
+background: #FCC81C;
+border-radius: 2px;
+font-family: 'Fira Code';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 18px;
+border: none;
+cursor: pointer;
+color: #1C252A;
+text-decoration: none;
+}
+.three-bar-menu{
+  display: none;
+}
+
+  
+}
+
+/* Large secreens and tv */
+@media only screen and (min-width: 1501px) {
+
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+  body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #1C252A;
+      margin: 0 200px;
+      font-family: 'Fira Code', monospace;
+  }
+  
+  .NavContainer{
+      padding-top: 45px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 40px;
+  }
+  
+  .Nav-items{
+      display: flex;
+     gap: 45px;
+     
+  }
+  .image-logo{
+    width: 200px;
+   margin-left: -40px;
+
+  }
+  .link{
+      color: white;
+     text-decoration: none;
+     position: relative;
+     font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 18px;
+  }
+  
+    .link:hover {
+      color: white;
+    }
+  
+    .link::before {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #FCC81C;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+  
+    .link:hover::before {
+      transform: scaleX(1);
+    }
+  
+  .signupBtn{
+      padding: 5px 10px;
+      
+  background: #FFFFFF;
+  border-radius: 2px;
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 23px;
+  text-decoration: none;
+  color: #1C252A;
+  
+  }
+  
+  .registerBtns{
+      display: flex;
+      gap: 7px;
+  }
+  
+  .login{
+      padding: 5px 10px;
+  gap: 10px;
+  
+  width: 80px;
+    height: 37px;
+  
+  background: #FCC81C;
+  border-radius: 2px;
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 23px;
+  
+  color: #1C252A;
+  text-decoration: none;
+  }
+  
+  .logoutBtn{
+    width: 80px;
+    height: 37px;
+  background: #FCC81C;
+  border-radius: 2px;
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 23px;
+  border: none;
+  cursor: pointer;
+  color: #1C252A;
+  text-decoration: none;
+  }
+ 
+  .three-bar-menu{
+    display: none;
+  }
+  
 }

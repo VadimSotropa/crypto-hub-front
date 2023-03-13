@@ -1,3 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+@media only screen and (max-width: 480px) {
+
+  @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap");
+
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
+    margin: 0 20px;
+    font-family: "Fira Code", monospace;
+    
+    
+    
+  }
+  *:focus {
+      outline: none;
+      
+  }
+  
+  .signupContainer {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 80px;
+    
+
+  }
+  
+  .title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 39px;
+    color: white;
+  }
+  .imputItem::placeholder{
+    color: rgba(28, 37, 42, 0.54) !important;
+  }
+  .imputItem {
+    padding: 6px 13px;
+  
+    width: 250px;
+    height: 50px;
+    border: none;
+    background: #ffffff;
+    border-radius: 16px;
+    color: black;
+    font-family: "Fira Code";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 26px;
+  }
+  
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+    align-items: center;
+  }
+  
+  .termsText {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    text-align: center;
+    line-height: 16px;
+    color: rgba(255, 255, 255, 0.67);
+  }
+  
+  .termsColor {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    color: #fcc81c;
+  }
+  
+  .submitBTN {
+    padding: 6px 27px;
+    gap: 10px;
+    border: none;
+    width: 150px;
+    height: 50px;
+  
+    background: #ffffff;
+    border-radius: 16px;
+    color: rgba(28, 37, 42, 0.54);
+    font-family: "Fira Code";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 26px;
+    background: #fcc81c;
+    border-radius: 16px;
+    color: #1c252a;
+  }
+  .submitBTN:hover{
+      cursor: pointer;
+  }
+  
+  
+  .toLogin{
+     padding-top: 21px;
+  height: 22px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 26px;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  
+  .loginLink{
+      padding-left: 5px;
+      font-weight: 600;
+  font-size: 20px;
+  line-height: 26px;
+  text-decoration: none;
+  
+  
+  color: #FCC81C;
+  }
+  
+  .backBtn{
+      text-decoration: none;
+      color: #FCC81C;
+   
+      font-weight: 600;
+  }
+  
+  .backContainer{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 21px;
+     width: 300px;
+      gap: 5px;
+  
+  }
+  
+  .svgBack{
+      height: 22px;
+      fill: white;
+  }
+
+
+}
+
+
+
+@media only screen and (min-width: 481px) {
+
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap");
 
 body {
@@ -30,7 +190,9 @@ body {
   line-height: 39px;
   color: white;
 }
-
+.imputItem::placeholder{
+  color: rgba(28, 37, 42, 0.54) !important;
+}
 .imputItem {
   padding: 6px 27px;
 
@@ -39,7 +201,7 @@ body {
   border: none;
   background: #ffffff;
   border-radius: 16px;
-  color: rgba(28, 37, 42, 0.54);
+  color: black;
   font-family: "Fira Code";
   font-style: normal;
   font-weight: 600;
@@ -138,4 +300,6 @@ color: #FCC81C;
 .svgBack{
     height: 22px;
     fill: white;
+}
+
 }

@@ -1,0 +1,1058 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+  /* /* Mobile Devices / */
+@media only screen and (max-width: 480px) {
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+  body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #1C252A;
+      margin: 0 20px;
+      font-family: 'Fira Code', monospace;
+  }
+  
+  
+  
+  .lineFilterContainer{
+      display: flex !important;
+      justify-content: space-between !important;
+      padding-bottom: 50px;
+      flex-direction: row !important;
+      align-items: center;
+      
+  }
+  
+  .alphabetContainer{
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      
+      
+  }
+  
+  .symbolsContainer{
+      display: flex;
+      gap: 5px;
+     
+      
+  }
+  
+  .alphabetContainer span{
+     color: white;
+     font-size: 20px;
+     cursor: pointer;
+  }
+  
+  .symbolsContainer span{
+      color: white;
+      font-size: 20px;
+      margin-right: 0;
+      cursor: pointer;
+  }
+  
+  .alphabetContainer span:hover{
+      color: #FCC81C;
+      font-size: 20px;
+      transform: scale(2); /* increase the scale by 20% on hover */
+      display: inline-block; /* ensure the element has a fixed size */
+   }
+   
+   .symbolsContainer span:hover{
+      color: #FCC81C;
+      font-size: 20px;
+      transform: scale(2); /* increase the scale by 20% on hover */
+      display: inline-block; 
+   }
+  
+  
+   
+    
+    
+    .imputContainerAll {
+      padding-bottom: 10px;
+      border-bottom: solid 2px #fcc81c;
+      width: 100%;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 0px auto 40px auto;
+    }
+    .serchImputAll {
+      font-family: "Fira Code";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 18px;
+      background-color: transparent;
+      caret-color: white;
+      border: none;
+      color: white;
+      width: 513px;
+      text-align: center;
+    }
+    
+    input::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: white !important;
+      opacity: 1; /* Firefox */
+    }
+    
+    input:focus::placeholder {
+      color: transparent !important;
+    }
+    
+    .inputSearch {
+      background-color: transparent;
+      box-shadow: none;
+      border: none;
+      padding: 0;
+  
+    }
+    
+   
+    
+    .itemBTN:hover{
+        color: black;
+        background-color: white;
+        border: none;
+    }
+    
+    .btnContianer{
+        display: flex;
+        gap: 10px;
+        width: 430px;
+    }
+    
+    .curencyList{
+        border: 1px solid #FFFFFF;
+        border-radius: 16px;
+        width: 55px;
+        height: 30px;
+       color: white;
+       background-color: transparent;
+       padding: 6px 12px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+    }
+    
+    .curencyList:hover{
+        color: black;
+        background-color: white;
+        border: none;
+    }
+    
+    .curency-list{
+        border: none;
+    }
+  
+    .cryptoListContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .cryptoListItem {
+      width: calc(100% - 10px);
+      margin-bottom: 10px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+    }
+    .cryptoListItem:hover {
+      text-decoration: underline;
+      border-bottom: none; /* Remove the default underline */
+      color: #fcc81c;
+    }
+  
+  
+    .containerAll{
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+  
+    .titleMainAllContainer{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 45px;
+     
+    }
+  
+    .svg {
+      width: 414px;
+    }
+    
+    .titleMainAll{
+      font-size: 15px;
+    color: white;
+    font-style: normal;
+    font-weight: 600;
+    width: 414px;
+    }
+  
+    .containerFilterAll{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      flex-direction: column;
+      gap: 10px;
+    }
+}
+
+/* /* Tablets / */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+  body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #1C252A;
+      margin: 0 20px;
+      font-family: 'Fira Code', monospace;
+  }
+  
+  
+  
+  .lineFilterContainer{
+      display: flex !important;
+      justify-content: space-between !important;
+      padding-bottom: 50px;
+      flex-direction: row !important;
+      align-items: center;
+      
+  }
+  
+  .alphabetContainer{
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      
+      
+  }
+  
+  .symbolsContainer{
+      display: flex;
+      gap: 5px;
+     
+      
+  }
+  
+  .alphabetContainer span{
+     color: white;
+     font-size: 20px;
+     cursor: pointer;
+  }
+  
+  .symbolsContainer span{
+      color: white;
+      font-size: 20px;
+      margin-right: 0;
+      cursor: pointer;
+  }
+  
+  .alphabetContainer span:hover{
+      color: #FCC81C;
+      font-size: 20px;
+      transform: scale(2); /* increase the scale by 20% on hover */
+      display: inline-block; /* ensure the element has a fixed size */
+   }
+   
+   .symbolsContainer span:hover{
+      color: #FCC81C;
+      font-size: 20px;
+      transform: scale(2); /* increase the scale by 20% on hover */
+      display: inline-block; 
+   }
+  
+  
+   
+    
+    
+    .imputContainerAll {
+      padding-bottom: 10px;
+      border-bottom: solid 2px #fcc81c;
+      width: 100%;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 0px auto 40px auto;
+    }
+    .serchImputAll {
+      font-family: "Fira Code";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 18px;
+      background-color: transparent;
+      caret-color: white;
+      border: none;
+      color: white;
+      width: 513px;
+      text-align: center;
+    }
+    
+    input::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: white !important;
+      opacity: 1; /* Firefox */
+    }
+    
+    input:focus::placeholder {
+      color: transparent !important;
+    }
+    
+    .inputSearch {
+      background-color: transparent;
+      box-shadow: none;
+      border: none;
+      padding: 0;
+  
+    }
+    
+   
+    
+    .itemBTN:hover{
+        color: black;
+        background-color: white;
+        border: none;
+    }
+    
+    .btnContianer{
+        display: flex;
+        gap: 10px;
+        width: 430px;
+    }
+    
+    .curencyList{
+        border: 1px solid #FFFFFF;
+        border-radius: 16px;
+        width: 55px;
+        height: 30px;
+       color: white;
+       background-color: transparent;
+       padding: 6px 12px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+    }
+    
+    .curencyList:hover{
+        color: black;
+        background-color: white;
+        border: none;
+    }
+    
+    .curency-list{
+        border: none;
+    }
+  
+    .cryptoListContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .cryptoListItem {
+      width: calc(50% - 10px);
+      margin-bottom: 10px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+    }
+    .cryptoListItem:hover {
+      text-decoration: underline;
+      border-bottom: none; /* Remove the default underline */
+      color: #fcc81c;
+    }
+  
+  
+    .containerAll{
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+  
+    .titleMainAllContainer{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+     
+    }
+  
+    .svg {
+      width: 414px;
+    height: 164px;
+    padding-top: 30px;
+    }
+    
+    .titleMainAll{
+      padding-top: 30px;
+      font-size: 18px;
+    color: white;
+    font-style: normal;
+    font-weight: 600;
+    width: 850px;
+    height: 30px;
+    }
+  
+    .containerFilterAll{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      flex-direction: column;
+      gap: 10px;
+    }
+}
+
+/* /* Small Screens and Laptops / */
+@media only screen and (min-width: 769px) and (max-width: 1270px) {
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+  body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #1C252A;
+      margin: 0 20px;
+      font-family: 'Fira Code', monospace;
+  }
+  
+  
+  
+  .lineFilterContainer{
+      display: flex !important;
+      justify-content: space-between !important;
+      padding-bottom: 50px;
+      flex-direction: row !important;
+      align-items: center;
+      
+  }
+  
+  .alphabetContainer{
+      display: flex;
+      gap: 8px;
+      
+  }
+  
+  .symbolsContainer{
+      display: flex;
+      gap: 5px;
+     
+      
+  }
+  
+  .alphabetContainer span{
+     color: white;
+     font-size: 20px;
+     cursor: pointer;
+  }
+  
+  .symbolsContainer span{
+      color: white;
+      font-size: 20px;
+      margin-right: 0;
+      cursor: pointer;
+  }
+  
+  .alphabetContainer span:hover{
+      color: #FCC81C;
+      font-size: 20px;
+      transform: scale(2); /* increase the scale by 20% on hover */
+      display: inline-block; /* ensure the element has a fixed size */
+   }
+   
+   .symbolsContainer span:hover{
+      color: #FCC81C;
+      font-size: 20px;
+      transform: scale(2); /* increase the scale by 20% on hover */
+      display: inline-block; 
+   }
+  
+  
+   
+    
+    
+    .imputContainerAll {
+      padding-bottom: 10px;
+      border-bottom: solid 2px #fcc81c;
+      width: 513px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 0px auto 40px auto;
+    }
+    .serchImputAll {
+      font-family: "Fira Code";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 18px;
+      background-color: transparent;
+      caret-color: white;
+      border: none;
+      color: white;
+      width: 513px;
+      text-align: center;
+    }
+    
+    input::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: white !important;
+      opacity: 1; /* Firefox */
+    }
+    
+    input:focus::placeholder {
+      color: transparent !important;
+    }
+    
+    .inputSearch {
+      background-color: transparent;
+      box-shadow: none;
+      border: none;
+      padding: 0;
+  
+    }
+    
+   
+    
+    .itemBTN:hover{
+        color: black;
+        background-color: white;
+        border: none;
+    }
+    
+    .btnContianer{
+        display: flex;
+        gap: 10px;
+        width: 430px;
+    }
+    
+    .curencyList{
+        border: 1px solid #FFFFFF;
+        border-radius: 16px;
+        width: 55px;
+        height: 30px;
+       color: white;
+       background-color: transparent;
+       padding: 6px 12px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+    }
+    
+    .curencyList:hover{
+        color: black;
+        background-color: white;
+        border: none;
+    }
+    
+    .curency-list{
+        border: none;
+    }
+  
+    .cryptoListContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .cryptoListItem {
+      width: calc(50% - 10px);
+      margin-bottom: 10px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+    }
+    .cryptoListItem:hover {
+      text-decoration: underline;
+      border-bottom: none; /* Remove the default underline */
+      color: #fcc81c;
+    }
+  
+  
+    .containerAll{
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+  
+    .titleMainAllContainer{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+     
+    }
+  
+    .svg {
+      width: 414px;
+    height: 164px;
+    }
+    
+    .titleMainAll{
+      font-size: 18px;
+    color: white;
+    font-style: normal;
+    font-weight: 600;
+    width: 850px;
+    height: 30px;
+    }
+  
+    .containerFilterAll{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+}
+
+/* /* Desktops and Large Screens / */
+@media only screen and (min-width: 1269px) and (max-width: 1501px) {
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+  body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #1C252A;
+      margin: 0 200px;
+      font-family: 'Fira Code', monospace;
+  }
+  
+  
+  
+  .lineFilterContainer{
+      display: flex !important;
+      justify-content: space-between !important;
+      padding-bottom: 50px;
+      flex-direction: row !important;
+      align-items: center;
+      
+  }
+  
+  .alphabetContainer{
+      display: flex;
+      gap: 15px;
+      
+  }
+  
+  .symbolsContainer{
+      display: flex;
+      gap: 15px;
+     
+      
+  }
+  
+  .alphabetContainer span{
+     color: white;
+     font-size: 20px;
+     cursor: pointer;
+  }
+  
+  .symbolsContainer span{
+      color: white;
+      font-size: 20px;
+      margin-right: 0;
+      cursor: pointer;
+  }
+  
+  .alphabetContainer span:hover{
+      color: #FCC81C;
+      font-size: 20px;
+      transform: scale(2); /* increase the scale by 20% on hover */
+      display: inline-block; /* ensure the element has a fixed size */
+   }
+   
+   .symbolsContainer span:hover{
+      color: #FCC81C;
+      font-size: 20px;
+      transform: scale(2); /* increase the scale by 20% on hover */
+      display: inline-block; 
+   }
+  
+  
+   
+    
+    
+    .imputContainerAll {
+      padding-bottom: 10px;
+      border-bottom: solid 2px #fcc81c;
+      width: 513px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 0px auto 40px auto;
+    }
+    .serchImputAll {
+      font-family: "Fira Code";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 18px;
+      background-color: transparent;
+      caret-color: white;
+      border: none;
+      color: white;
+      width: 513px;
+      text-align: center;
+    }
+    
+    input::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: white !important;
+      opacity: 1; /* Firefox */
+    }
+    
+    input:focus::placeholder {
+      color: transparent !important;
+    }
+    
+    .inputSearch {
+      background-color: transparent;
+      box-shadow: none;
+      border: none;
+      padding: 0;
+  
+    }
+    
+   
+    
+    .itemBTN:hover{
+        color: black;
+        background-color: white;
+        border: none;
+    }
+    
+    .btnContianer{
+        display: flex;
+        gap: 10px;
+        width: 430px;
+    }
+    
+    .curencyList{
+        border: 1px solid #FFFFFF;
+        border-radius: 16px;
+        width: 55px;
+        height: 30px;
+       color: white;
+       background-color: transparent;
+       padding: 6px 12px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+    }
+    
+    .curencyList:hover{
+        color: black;
+        background-color: white;
+        border: none;
+    }
+    
+    .curency-list{
+        border: none;
+    }
+  
+    .cryptoListContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .cryptoListItem {
+      width: calc(33% - 10px);
+      margin-bottom: 10px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+    }
+    .cryptoListItem:hover {
+      text-decoration: underline;
+      border-bottom: none; /* Remove the default underline */
+      color: #fcc81c;
+    }
+  
+  
+    .containerAll{
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+  
+    .titleMainAllContainer{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+     
+    }
+  
+    .svg {
+      width: 382px;
+  height: 164px;
+    }
+    
+    .titleMainAll{
+      font-size: 25px;
+      color: white;
+      font-style: normal;
+      font-weight: 600;
+      width: 778px;
+      height: 47px;
+    }
+  
+    .containerFilterAll{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+  
+}
+/* 
+/* Extra Large Screens and TV / */
+@media only screen and (min-width: 1501px) {
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+  body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #1C252A;
+      margin: 0 200px;
+      font-family: 'Fira Code', monospace;
+  }
+  
+  
+  
+  .lineFilterContainer{
+      display: flex !important;
+      justify-content: space-between !important;
+      width: 100% !important;
+      padding-bottom: 50px;
+      flex-direction: row !important;
+  }
+  
+  .containerFilterAll{
+    display: flex;
+    margin-bottom: 30px;
+    justify-content: space-between !important;
+    align-items: center;
+  }
+
+  .alphabetContainer{
+      display: flex;
+      gap: 25px;
+     
+  }
+  
+  .symbolsContainer{
+      display: flex;
+      gap: 25px;
+     
+  }
+  
+  .alphabetContainer span{
+     color: white;
+     font-size: 25px;
+     cursor: pointer;
+  }
+  
+  .symbolsContainer span{
+      color: white;
+      font-size: 25px;
+      margin-right: 0;
+      cursor: pointer;
+  }
+  
+  .alphabetContainer span:hover{
+      color: #FCC81C;
+      font-size: 20px;
+      transform: scale(2); /* increase the scale by 20% on hover */
+      display: inline-block; /* ensure the element has a fixed size */
+   }
+   
+   .symbolsContainer span:hover{
+      color: #FCC81C;
+      font-size: 20px;
+      transform: scale(2); /* increase the scale by 20% on hover */
+      display: inline-block; 
+   }
+  
+  
+   
+    
+    
+    .imputContainerAll {
+      padding-bottom: 10px;
+      border-bottom: solid 2px #fcc81c;
+      width: 513px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 0px auto 40px auto;
+    }
+    .serchImputAll {
+      font-family: "Fira Code";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 18px;
+      background-color: transparent;
+      caret-color: white;
+      border: none;
+      color: white;
+      width: 513px;
+      text-align: center;
+    }
+    
+    input::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: white !important;
+      opacity: 1; /* Firefox */
+    }
+    
+    input:focus::placeholder {
+      color: transparent !important;
+    }
+    
+    .inputSearch {
+      background-color: transparent;
+      box-shadow: none;
+      border: none;
+      padding: 0;
+  
+    }
+    
+   
+    
+    .itemBTN:hover{
+        color: black;
+        background-color: white;
+        border: none;
+    }
+    
+    .btnContianer{
+        display: flex;
+        gap: 10px;
+        width: 430px;
+    }
+    
+    .curencyList{
+        border: 1px solid #FFFFFF;
+        border-radius: 16px;
+        width: 55px;
+        height: 30px;
+       color: white;
+       background-color: transparent;
+       padding: 6px 12px;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+    }
+    
+    .curencyList:hover{
+        color: black;
+        background-color: white;
+        border: none;
+    }
+    
+    .curency-list{
+        border: none;
+    }
+  
+    .cryptoListContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* Center the items horizontally */
+      align-items: center;
+    }
+    
+    .cryptoListItem {
+      width: calc(25% - 10px); /* 4 columns with 10px gap between each item */
+      margin-bottom: 10px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .cryptoListItem:hover {
+      text-decoration: underline;
+      border-bottom: none; /* Remove the default underline */
+      color: #fcc81c;
+    }
+  
+    .containerAll{
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+  
+    .titleMainAllContainer{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+     
+     
+    }
+  
+    .svg {
+      width: 382px;
+  height: 164px;
+    }
+    
+    .titleMainAll{
+      font-size: 40px;
+      color: white;
+      font-style: normal;
+      font-weight: 600;
+      width: 1100px;
+      height: 47px;
+    }
+  
+    
+  
+}
