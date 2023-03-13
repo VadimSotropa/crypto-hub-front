@@ -56,7 +56,7 @@ function CryptoItem() {
         });
     }, [secondId]);
     
-    let name, image, priceNew, pricePercent, symbol, nameLower, priceChange24h, priceChange7d, priceChange14d, priceChange30d, priceChange60d, priceChange200d, priceChange1y;
+    let name, image, priceNew, symbol, nameLower, priceChange24h, priceChange7d, priceChange14d, priceChange30d, priceChange60d, priceChange200d, priceChange1y;
 
     if (cryptoData) {
       name = cryptoData.name;
@@ -64,7 +64,7 @@ function CryptoItem() {
       console.log(nameLower);
       image = cryptoData.image.large;
       priceNew = cryptoData.market_data.current_price.usd;
-      pricePercent = cryptoData.market_data.price_change_percentage_24h;
+      
       symbol = cryptoData.symbol;
       priceChange24h = cryptoData.market_data.price_change_percentage_24h;
       priceChange7d = cryptoData.market_data.price_change_percentage_7d;
@@ -79,7 +79,7 @@ function CryptoItem() {
       nameLower = '';
       image = '';
       priceNew = '';
-      pricePercent = '';
+  
       symbol = '';
       priceChange24h = '';
       priceChange7d = '';

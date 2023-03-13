@@ -18,7 +18,7 @@ const userStateLogin = atom({
     likedArticles: '',
   },
 });
-const notify = () => toast.success('Loged succesful');
+
 
 export default function Register() {
   const navigate = useNavigate();
