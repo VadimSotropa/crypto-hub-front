@@ -48,7 +48,7 @@
     "https-browserify": "^1.0.0"
   },
   "engines": {
-    "npm": "9.4.1",
+    "npm": "9.6.1",
     "node": "16.18.0"
   }
 }
