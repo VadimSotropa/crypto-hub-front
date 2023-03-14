@@ -14,24 +14,26 @@
     }
     
     .one-crypto-container{
-        margin-top: 50px;
+        margin-top: 30px;
         display: flex;
-        justify-content: space-between;
-       
+        justify-content: center;
+       flex-direction: column;
         height: 232px;
         margin-bottom: 5px;
+        gap: 10px;
     }
     
     .one-crypto-left{
-       
+        margin-top: 10px;
        display: flex;
        justify-content: center;
        align-items: center;
-       gap: 20px;
+       gap: 10px;
+       margin-bottom: 10px;
     }
     .one-crypto-left-container{
         display: flex;
-       align-items: flex-start;
+       align-items: center;
        flex-direction: column;
        justify-content: center;
       
@@ -44,7 +46,8 @@
        justify-content: center;
        align-items: flex-end;
     gap: 10px;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
     
     }
     
@@ -71,22 +74,22 @@
     .one-crypto-image{
       
     width: auto;
-    height: 80px;
+    height: 70px;
     }
     
     .one-crypto-right{
        
         display: flex;
-       align-items: flex-end;
+       align-items: center;
        flex-direction: column;
        justify-content: center;
-      
-    
+      flex-wrap: wrap;
+    gap: 10px;
     }
     
     .one-crypto-price{
         color: white;
-        font-size: 35px;
+        font-size: 25px;
         font-weight: bold;
         font-family: 'Fira Code', monospace;
         margin: 0;
@@ -95,7 +98,7 @@
     
     .one-crypto-percent-positif{
         color: white;
-        font-size: 25px;
+        font-size: 15px;
         font-weight: bold;
         font-family: 'Fira Code', monospace;
         padding: 5px;
@@ -112,7 +115,7 @@
     
     .one-crypto-percent-negatif{
         color: white;
-        font-size: 25px;
+        font-size: 15px;
         font-weight: bold;
         font-family: 'Fira Code', monospace;
         padding: 5px;
@@ -129,7 +132,7 @@
     
     .one-crypto-name{
         color: white;
-        font-size: 35px;
+        font-size: 25px;
         font-weight: bold;
         font-family: 'Fira Code', monospace;
         margin: 0;
@@ -138,7 +141,7 @@
     
     .one-crypto-symbol{
         color: white;
-        font-size: 25px;
+        font-size: 20px;
         font-weight: bold;
         font-family: 'Fira Code', monospace;
         margin: 0;
@@ -150,7 +153,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 50px;
+        gap: 30px;
+        
+    }
+
+    .one-crypto-star{
+        width: 20px;
     }
 }
 
