@@ -68,9 +68,9 @@ export default function Navbar() {
            <Link className={"link"} to={"/AllCrypto"}>
              All Crypto
            </Link>
-           <Link className={"link"} to={"/Exchange"}>
+           {/* <Link className={"link"} to={"/Exchange"}>
              Exchange rates
-           </Link>
+           </Link> */}
            <Link className={"link"} to={"/Favorite"}>
              Favorite
            </Link>
@@ -98,9 +98,9 @@ export default function Navbar() {
             <Link className={"link"} to={"/AllCrypto"}>
               All Crypto
             </Link>
-            <Link className={"link"} to={"/Exchange"}>
+            {/* <Link className={"link"} to={"/Exchange"}>
               Exchange rates
-            </Link>
+            </Link> */}
             <Link className={"link"} to={"/Favorite"}>
               Favorite
             </Link>
@@ -135,9 +135,9 @@ export default function Navbar() {
           <Link className={"mobileLink"} to={"/AllCrypto"}>
             All Crypto
           </Link>
-          <Link className={"mobileLink"} to={"/Exchange"}>
+          {/* <Link className={"mobileLink"} to={"/Exchange"}>
             Exchange rates
-          </Link>
+          </Link> */}
           <Link className={"mobileLink"} to={"/Favorite"}>
             Favorite
           </Link>
