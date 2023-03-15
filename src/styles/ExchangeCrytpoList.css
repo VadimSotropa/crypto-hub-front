@@ -1,0 +1,54 @@
+/* /* Mobile Devices / */
+@media only screen and (max-width: 480px) {
+
+}
+
+/* /* Tablets / */
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+
+}
+
+/* /* Small Screens and Laptops / */
+@media only screen and (min-width: 769px) and (max-width: 1269px) {
+
+}
+
+/* /* Desktops and Large Screens / */
+@media only screen and (min-width: 1269px) and (max-width: 1501px) {
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+.exchange-list-container{
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+   
+    border: 2px solid #00d963;
+    border-radius: 16px;
+    padding: 5px 10px;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+}
+.exchange-list-container-negatif{
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  
+    border: 3px solid #b30100;
+    border-radius: 16px;
+    padding: 5px 10px;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+   .exchange-list-image{
+    width: 50px;
+   }
+
+}
+
+/* 
+/* Extra Large Screens and TV / */
+@media only screen and (min-width: 1501px) {
+}
