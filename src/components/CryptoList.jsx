@@ -6,6 +6,7 @@ import { userStateLogin } from "../pages/Login";
 import { FaStar } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -51,7 +52,7 @@ function useCoinGeckoData() {
         // Fetch data from API
         const response = await fetch("https://api.coinpaprika.com/v1/coins");
         const data = await response.json();
-        const topTenCryptos = data.slice(0, 2);
+        const topTenCryptos = data.slice(0, 9);
         console.log("from api");
         const cryptoData = await Promise.all(
           topTenCryptos.map((crypto) =>
@@ -106,7 +107,9 @@ function useCoinGeckoData() {
 }
 
 function CryptoItem({ crypto, currency }) {
-  console.log(crypto);
+ 
+
+ 
   const [user, setUser] = useRecoilState(userStateLogin);
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -220,13 +223,17 @@ function CryptoItem({ crypto, currency }) {
       useEffect(() => {
         // Check if chart data is in localStorage
         const storedData = localStorage.getItem(`coinChartData-${crypto.id}`);
+        
         if (storedData) {
           setCoinChartData(JSON.parse(storedData));
           console.log("chart local");
+          
         } else {
           fetchData();
           console.log("chart api");
+          
         }
+
       }, []);
     
       useEffect(() => {
@@ -275,6 +282,7 @@ function CryptoItem({ crypto, currency }) {
 
 
   return (
+    
     <div className={percentChange >= 0 ? "crypto-item" : "crypto-item-negatif"}>
       <div className="crypto-item-info">
         <div className="crypto-item-left">
@@ -351,17 +359,15 @@ export default function CryptoList() {
 
   let sortedCrypto = [...filteredCrypto];
 
-  if (sortType === "market_cap") {
-    sortedCrypto.sort((a, b) => b.market_cap - a.market_cap);
-  } else if (sortType === "top_traded") {
-    sortedCrypto.sort((a, b) => b.total_volume - a.total_volume);
+  if (sortType === "rank") {
+    sortedCrypto.sort((a, b) => b.rank > a.rank);
   } else if (sortType === "top_gainer") {
     sortedCrypto.sort(
-      (a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h
+      (a, b) => b.percent_change_24h - a.percent_change_24h
     );
   } else if (sortType === "top_loser") {
     sortedCrypto.sort(
-      (a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h
+      (a, b) => a.percent_change_24h - b.percent_change_24h
     );
   }
 
@@ -374,8 +380,11 @@ export default function CryptoList() {
     };
   });
 
+
+  
   return (
     <div>
+      
       <FilterBar
         handleSearch={handleSearch}
         handleSort={handleSort}
@@ -385,6 +394,7 @@ export default function CryptoList() {
         currency={currency}
       />
       <div className="crypto-container-list" onScroll={handleScroll}>
+        
         {convertedCrypto.map((crypto) => (
           <CryptoItem
             key={crypto.id}

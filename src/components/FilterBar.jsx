@@ -40,20 +40,13 @@ export default function FilterBar({
             onChange={handleSearch}
           />
         </div>
-        <div className="btnContianer">
+        <div className="btnContianerFilter">
           <button
-            className={`itemBTN ${sortType === "market_cap" ? "active" : ""}`}
+            className={`itemBTN ${sortType === "rank" ? "active" : ""}`}
             onClick={handleSort}
-            value="market_cap"
+            value="rank"
           >
-            Market Cap
-          </button>
-          <button
-            className={`itemBTN ${sortType === "top_traded" ? "active" : ""}`}
-            onClick={handleSort}
-            value="top_traded"
-          >
-            Top Traded
+           Rank
           </button>
           <button
             className={`itemBTN ${sortType === "top_gainer" ? "active" : ""}`}

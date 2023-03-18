@@ -76,7 +76,7 @@
       border: none;
   }
   
-  .btnContianer{
+   .btnContianerFilter{
       display: flex;
       gap: 10px;
       width: 430px;
@@ -187,7 +187,7 @@
       border: none;
   }
   
-  .btnContianer{
+   .btnContianerFilter{
       display: flex;
       gap: 10px;
       width: 430px;
@@ -298,10 +298,10 @@
       border: none;
   }
   
-  .btnContianer{
+   .btnContianerFilter{
       display: flex;
       gap: 10px;
-      width: 430px;
+     
   }
   
   .curencyList{
@@ -407,10 +407,10 @@ cursor: pointer;
     border: none;
 }
 
-.btnContianer{
+ .btnContianerFilter{
     display: flex;
     gap: 10px;
-    width: 430px;
+    padding-right: 60px;
 }
 
 .curencyList{
@@ -519,12 +519,12 @@ cursor: pointer;
       border: none;
   }
   
-  .btnContianer{
+   .btnContianerFilter{
       display: flex;
     justify-content: flex-end;
     align-items: flex-end;
       gap: 10px;
-      width: 490px;
+      
   }
   
   .curencyList{

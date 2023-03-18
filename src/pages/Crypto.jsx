@@ -75,7 +75,7 @@ function CryptoItem() {
   }, [id, cryptoData, savedCrypto]);
 
   const [user, setUser] = useRecoilState(userStateLogin);
-  const [isLiked, setIsLiked] = useLocalStorage('isLiked', false);
+  const [isLiked, setIsLiked] = useState(false);
 
 
   useEffect(() => {
@@ -147,110 +147,114 @@ function CryptoItem() {
     }
   };
 
+  
+  const [days, setDays] = useState("7d");
   const [start, setStart] = useState(moment().subtract(7, "days").format("YYYY-MM-DD"));
-  const [interval, setInterval] = useState("1d");
-  const [intervalIdChart, setIntervalIdChart] = useState(null);
-  const HistoryChart = () => {
-    const [coinChartData, setCoinChartData] = useState([]);
-   
-   
-   
-  
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://api.coinpaprika.com/v1/tickers/${crypto.id}/historical?start=${start}&interval=${interval}`
-        );
-        const chartData = response.data.map((value) => ({
-          x: new Date(value.timestamp).getTime(),
-          y: value.price.toFixed(2),
-        }));
-        setCoinChartData(chartData);
-  
-        // Save data to localStorage
-        localStorage.setItem(`coinChartData-${crypto.id} ${interval} ${start}`, JSON.stringify(chartData));
-      } catch (error) {
-        console.log("Error fetching chart data: ", error);
-      }
-    };
-  
-    useEffect(() => {
-      // Check if chart data is in localStorage
-      const storedData = localStorage.getItem(`coinChartData-${crypto.id}`);
-      if (storedData) {
-        setCoinChartData(JSON.parse(storedData));
-        console.log("chart local");
-      } else {
-        fetchData();
-        console.log("chart api");
-      }
-    }, [interval, start]);
-  
-    useEffect(() => {
-      const intervalDays = {
-        "1d": 1,
-        "7d": 1,
-        "14d": 1,
-        "30d": 2,
-        "90d": 3,
-        "365d": 6,
-      };
-      const intervalValue = intervalDays[interval] || 1;
-      const intervalInMilliseconds = intervalValue * 24 * 60 * 60 * 1000;
-      clearInterval(intervalIdChart);
-      const newIntervalId = setInterval(() => {
-        fetchData();
-      }, intervalInMilliseconds);
-      setIntervalIdChart(newIntervalId);
-  
-      return () => clearInterval(newIntervalId);
-    }, [interval, start]);
-  
-    const options = {
-      type: "line",
-      responsive: true,
-    };
-    const data = {
-      labels: coinChartData.map((value) => moment(value.x).format("MMM DD")),
-      datasets: [
-        {
-          pointStyle: false,
-          label: crypto.name,
-          data: coinChartData.map((val) => val.y),
-          borderColor: "rgb(53, 162, 235)",
-          backgroundColor: "rgba(53, 162, 235, 0.5)",
-        },
-      ],
-    };
-  
+
+  useEffect(() => {
+    setDays("1d");
     
-
-    return (
-      <div>
-        {coinChartData.length > 0 ? (
-          <Line options={options} data={data} />
-        ) : (
-          <div className="wrapper-container mt-8">
-            <Skeleton className="h-72 w-full mb-10" />
-          </div>
-        )}
-      </div>
-    );
-  };
-
-  const handleIntervalClick = (value) => {
-    setInterval(value);
-    const intervalStart = {
-      "1d": moment().subtract(1, "days"),
-      "7d": moment().subtract(7, "days"),
-      "14d": moment().subtract(14, "days"),
-      "30d": moment().subtract(30, "days"),
-      "90d": moment().subtract(90, "days"),
-      "365d": moment().subtract(365, "days"),
-    };
-    setStart(intervalStart[value].format("YYYY-MM-DD"));
-  };
+  }, [days]);
+  
+  const handleButtonClick = (event) => {
+    const { value } = event.target;
    
+    if (value === "7d") {
+      setStart(moment().subtract(7, "days").format("YYYY-MM-DD"))
+      setDays('1d');
+    } else if (value === "14d") {
+      setStart(moment().subtract(14, "days").format("YYYY-MM-DD"))
+      setDays('1d');
+    } else if (value === "30d") {
+      setStart(moment().subtract(30, "days").format("YYYY-MM-DD"))
+      setDays('1d');
+    } else if (value === "90d") {
+      setStart(moment().subtract(90, "days").format("YYYY-MM-DD"))
+      setDays('7d');
+    } else if (value === "365d") {
+      setStart(moment().subtract(360, "days").format("YYYY-MM-DD"))
+      setDays('14d');
+    } 
+  };
+
+  
+
+const HistoryChart = () => {
+  const [coinChartData, setCoinChartData] = useState([]);
+    
+  const fetchData = async () => {
+    try {
+     
+      const response = await axios.get(
+        `https://api.coinpaprika.com/v1/tickers/${crypto.id}/historical?start=${start}&interval=${days}`
+      );
+      const chartData = response.data.map((value) => ({
+        x: new Date(value.timestamp).getTime(),
+        y: value.price.toFixed(2),
+      }));
+      setCoinChartData(chartData);
+
+      // Save data to localStorage
+      localStorage.setItem(
+        `coinChartData-${crypto.id} ${start} ${days}`,
+        JSON.stringify(chartData)
+      );
+    } catch (error) {
+      console.log("Error fetching chart data: ", error);
+    }
+  };
+
+  useEffect(() => {
+    // Check if chart data is in localStorage
+    const storedData = localStorage.getItem(`coinChartData-${crypto.id} ${start} ${days}`);
+    if (storedData) {
+      setCoinChartData(JSON.parse(storedData));
+      console.log("chart local");
+    } else {
+      fetchData();
+      console.log("chart api");
+    }
+  }, []);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      fetchData();
+    }, 60 * 60 * 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const options = {
+    type: "line",
+    responsive: true,
+  };
+  const data = {
+    labels: coinChartData.map((value) => moment(value.x).format("MMM DD")),
+    datasets: [
+      {
+        pointStyle: false,
+        label: crypto.name,
+        data: coinChartData.map((val) => val.y),
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
+      },
+    ],
+  };
+
+return (
+  <div>
+    {coinChartData.length > 0 ? (
+      <Line options={options} data={data} />
+    ) : (
+      <div className="wrapper-container mt-8">
+        <Skeleton className="h-72 w-full mb-10" />
+      </div>
+    )}
+  </div>
+);
+};
+
+
   return (
     <div>
       <div className="one-crypto-container">
@@ -289,21 +293,11 @@ function CryptoItem() {
    
     </div>
     <div className="one-crypto-days-change">
-      <button onClick={() => handleIntervalClick("7d")} value="7d">
-        7D
-      </button>
-      <button onClick={() => handleIntervalClick("14d")} value="14d">
-        14D
-      </button>
-      <button onClick={() => handleIntervalClick("30d")} value="30d">
-        30D
-      </button>
-      <button onClick={() => handleIntervalClick("90d")} value="90d">
-        90D
-      </button>
-      <button onClick={() => handleIntervalClick("365d")} value="365d">
-        1Y
-      </button>
+    <button onClick={handleButtonClick} value="7d">7D</button>
+        <button onClick={handleButtonClick} value="14d">14D</button>
+        <button onClick={handleButtonClick} value="30d">30D</button>
+        <button onClick={handleButtonClick} value="90d">90D</button>
+        <button onClick={handleButtonClick} value="365d">1Y</button>
         </div>
     <HistoryChart/>
     </div>
