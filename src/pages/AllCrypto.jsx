@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import "../styles/HeaderHome.css";
 import "../styles/Allcrypto.css";
-import cryptoData from "../crypto.json";
 import { useNavigate } from "react-router-dom";
 
 export default function AllCrypto({
@@ -17,21 +16,38 @@ export default function AllCrypto({
   const [filteredCryptoList, setFilteredCryptoList] = useState([]);
 
   useEffect(() => {
-    setCryptoList(cryptoData);
-    setFilteredCryptoList(cryptoData);
+    const storedCryptoNames = localStorage.getItem("cryptoNames");
+    if (storedCryptoNames) {
+      setCryptoList(JSON.parse(storedCryptoNames));
+      setFilteredCryptoList(JSON.parse(storedCryptoNames));
+      console.log('from store names');
+    } else {
+      const fetchData = async () => {
+        const response = await fetch("https://api.coinpaprika.com/v1/tickers");
+        const data = await response.json();
+        const cryptoNames = data.map((crypto) => ({ name: crypto.name, id: crypto.id }));
+        setCryptoList(cryptoNames);
+        setFilteredCryptoList(cryptoNames);
+        localStorage.setItem("cryptoNames", JSON.stringify(cryptoNames));
+        console.log('from api names');
+      };
+      fetchData();
+    }
   }, []);
 
   useEffect(() => {
     const filteredList = cryptoList.filter((crypto) => {
       const name = crypto.name.toLowerCase();
       const searchTermLower = searchTerm.toLowerCase();
-      const startsWithSelectedLetter = selectedLetter === '' || name.startsWith(selectedLetter.toLowerCase());
-      const includesSearchTerm = searchTerm === '' || name.includes(searchTermLower);
+      const startsWithSelectedLetter =
+        selectedLetter === "" || name.startsWith(selectedLetter.toLowerCase());
+      const includesSearchTerm =
+        searchTerm === "" || name.includes(searchTermLower);
       return startsWithSelectedLetter && includesSearchTerm;
     });
     setFilteredCryptoList(filteredList);
   }, [cryptoList, searchTerm, selectedLetter]);
-
+console.log('filtred list', filteredCryptoList);
   const handleLetterClick = (letter) => {
     setSelectedLetter(letter);
     setSearchTerm("");
@@ -45,7 +61,11 @@ export default function AllCrypto({
   const navigate = useNavigate();
 
   const handleCryptoClick = (crypto) => {
-    navigate(`/crypto/${crypto.id}`, { state: { crypto } });
+    const selectedCrypto = filteredCryptoList.find((c) => c.name === crypto);
+    if (selectedCrypto) {
+      const id = selectedCrypto.id;
+      navigate(`/crypto/${id}`);
+    }
   };
 
   return (
@@ -99,7 +119,7 @@ export default function AllCrypto({
           <div
             key={index}
             className="cryptoListItem"
-            onClick={() => handleCryptoClick(crypto)}
+            onClick={() => handleCryptoClick(crypto.name)}
           >
             {crypto.name}
   </div>
