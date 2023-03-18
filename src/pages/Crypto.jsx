@@ -8,7 +8,9 @@ import axios from 'axios';
 import toast, { Toaster } from "react-hot-toast";
 import { useLocation } from "react-router-dom";
     import useAxios from "../hooks/useAxios"
-    
+   import { useRecoilValue } from "recoil";
+import { cryptoDataState } from "../components/CryptoList";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -36,65 +38,45 @@ ChartJS.register(
 );
 
 
+function useLocalStorage(key, initialValue) {
+  const [value, setValue] = useState(() => {
+    const storedValue = localStorage.getItem(key);
+    return storedValue ? JSON.parse(storedValue) : initialValue;
+  });
 
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(value));
+  }, [key, value]);
+
+  return [value, setValue];
+}
+
+function saveCrypto(crypto) {
+  localStorage.setItem(`crypto-${crypto.id}`, JSON.stringify(crypto));
+}
 
 function CryptoItem() {
 
-    const [cryptoData, setCryptoData] = useState(null);
+  const cryptoData = useRecoilValue(cryptoDataState);
+  console.log(cryptoData);
 
-    const location = useLocation();
-    const id = location.pathname.split('/')[2];
-    const secondId = id;
-    
-    useEffect(() => {
-      axios.get(`https://api.coingecko.com/api/v3/coins/${secondId}?vs_currency=usd&order=market_cap_desc&per_page=2&page=1&sparkline=false`)
-        .then((response) => {
-          setCryptoData(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }, [secondId]);
-    
-    let name, image, priceNew, symbol, nameLower, priceChange24h, priceChange7d, priceChange14d, priceChange30d, priceChange60d, priceChange200d, priceChange1y;
+  const location = useLocation();
+  const id = location.pathname.split('/')[2];
+  const secondId = id;
 
-    if (cryptoData) {
-      name = cryptoData.name;
-      nameLower = cryptoData.id;
-      console.log(nameLower);
-      image = cryptoData.image.large;
-      priceNew = cryptoData.market_data.current_price.usd;
-      
-      symbol = cryptoData.symbol;
-      priceChange24h = cryptoData.market_data.price_change_percentage_24h;
-      priceChange7d = cryptoData.market_data.price_change_percentage_7d;
-      priceChange14d = cryptoData.market_data.price_change_percentage_14d;
-      priceChange30d = cryptoData.market_data.price_change_percentage_30d;
-      priceChange60d = cryptoData.market_data.price_change_percentage_60d;
-      priceChange200d = cryptoData.market_data.price_change_percentage_200d;
-      priceChange1y = cryptoData.market_data.price_change_percentage_1y;
-    } else {
-      // Handle the case where data hasn't been fetched yet
-      name = '';
-      nameLower = '';
-      image = '';
-      priceNew = '';
-  
-      symbol = '';
-      priceChange24h = '';
-      priceChange7d = '';
-      priceChange14d = '';
-      priceChange30d = '';
-      priceChange60d = '';
-      priceChange200d = '';
-      priceChange1y = '';
+  const savedCrypto = JSON.parse(localStorage.getItem(`crypto-${id}`));
+  const crypto = savedCrypto ? savedCrypto : cryptoData.find((item) => item.id === id);
+
+  useEffect(() => {
+    if (!savedCrypto) {
+      const crypto = cryptoData.find((item) => item.id === id);
+      saveCrypto(crypto);
     }
-
-
-
+  }, [id, cryptoData, savedCrypto]);
 
   const [user, setUser] = useRecoilState(userStateLogin);
-  const [isLiked, setIsLiked] = useState(false);
+  const [isLiked, setIsLiked] = useLocalStorage('isLiked', false);
+
 
   useEffect(() => {
     const checkLikedStatus = async () => {
@@ -108,7 +90,7 @@ function CryptoItem() {
           }
         );
 
-        if (response.data.likedArticles.includes(nameLower)) {
+        if (response.data.likedArticles.includes(crypto.id)) {
           setIsLiked(true);
         }
       } catch (error) {
@@ -119,11 +101,11 @@ function CryptoItem() {
     if (user.token && user.likedArticles) {
       checkLikedStatus();
     }
-  }, [nameLower, user, secondId]);
+  }, [crypto.id, user, secondId]);
  
 
 
-  const price = parseFloat(priceNew).toLocaleString("en-US", {
+  const price = parseFloat(crypto.price).toLocaleString("en-US", {
     style: "currency",
     currency: "USD",
   });
@@ -137,7 +119,7 @@ function CryptoItem() {
     if (isLiked) {
       axios
         .delete("https://cryptohub-auth-app.herokuapp.com/Like", {
-          data: { token: user.token, article: nameLower },
+          data: { token: user.token, article: crypto.id },
         })
         .then((response) => {
           console.log(response.data); // handle response data
@@ -151,7 +133,7 @@ function CryptoItem() {
       axios
         .post("https://cryptohub-auth-app.herokuapp.com/Like", {
           token: user.token,
-          article: nameLower,
+          article: crypto.id,
         })
         .then((response) => {
           console.log(response.data); // handle response data
@@ -165,109 +147,120 @@ function CryptoItem() {
     }
   };
 
-  useEffect(() => {
-    setDays("1D");
-    setPercentChange(parseFloat(priceChange24h).toFixed(2));
-  }, [priceChange24h]);
+  const [start, setStart] = useState(moment().subtract(7, "days").format("YYYY-MM-DD"));
+  const [interval, setInterval] = useState("1d");
+  const [intervalIdChart, setIntervalIdChart] = useState(null);
+  const HistoryChart = () => {
+    const [coinChartData, setCoinChartData] = useState([]);
+   
+   
+   
   
-  const handleButtonClick = (event) => {
-    const { value } = event.target;
-    setDays(value);
-    if (value === "1D") {
-      setPercentChange(parseFloat(priceChange24h).toFixed(2));
-    } else if (value === "7D") {
-      setPercentChange(parseFloat(priceChange7d).toFixed(2));
-    } else if (value === "14D") {
-      setPercentChange(parseFloat(priceChange14d).toFixed(2));
-    } else if (value === "30D") {
-      setPercentChange(parseFloat(priceChange30d).toFixed(2));
-    } else if (value === "60D") {
-      setPercentChange(parseFloat(priceChange60d).toFixed(2));
-    } else if (value === "200D") {
-      setPercentChange(parseFloat(priceChange200d).toFixed(2));
-    } else if (value === "365D") {
-      setPercentChange(parseFloat(priceChange1y).toFixed(2));
-    }else if (value === "max") {
-      const currentPrice = cryptoData.market_data.current_price.usd;
-const allTimeLowPrice = cryptoData.market_data.atl.usd;
-console.log(cryptoData.market_data.atl.usd);
-const percentChange = ((currentPrice - allTimeLowPrice) / allTimeLowPrice) * 100;
-setPercentChange(percentChange.toFixed(2));
-    }
-  };
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.coinpaprika.com/v1/tickers/${crypto.id}/historical?start=${start}&interval=${interval}`
+        );
+        const chartData = response.data.map((value) => ({
+          x: new Date(value.timestamp).getTime(),
+          y: value.price.toFixed(2),
+        }));
+        setCoinChartData(chartData);
   
-  const [days, setDays] = useState("24H");
-  const [percentChange, setPercentChange] = useState(parseFloat(priceChange24h).toFixed(2));
+        // Save data to localStorage
+        localStorage.setItem(`coinChartData-${crypto.id} ${interval} ${start}`, JSON.stringify(chartData));
+      } catch (error) {
+        console.log("Error fetching chart data: ", error);
+      }
+    };
   
+    useEffect(() => {
+      // Check if chart data is in localStorage
+      const storedData = localStorage.getItem(`coinChartData-${crypto.id}`);
+      if (storedData) {
+        setCoinChartData(JSON.parse(storedData));
+        console.log("chart local");
+      } else {
+        fetchData();
+        console.log("chart api");
+      }
+    }, [interval, start]);
+  
+    useEffect(() => {
+      const intervalDays = {
+        "1d": 1,
+        "7d": 1,
+        "14d": 1,
+        "30d": 2,
+        "90d": 3,
+        "365d": 6,
+      };
+      const intervalValue = intervalDays[interval] || 1;
+      const intervalInMilliseconds = intervalValue * 24 * 60 * 60 * 1000;
+      clearInterval(intervalIdChart);
+      const newIntervalId = setInterval(() => {
+        fetchData();
+      }, intervalInMilliseconds);
+      setIntervalIdChart(newIntervalId);
+  
+      return () => clearInterval(newIntervalId);
+    }, [interval, start]);
+  
+    const options = {
+      type: "line",
+      responsive: true,
+    };
+    const data = {
+      labels: coinChartData.map((value) => moment(value.x).format("MMM DD")),
+      datasets: [
+        {
+          pointStyle: false,
+          label: crypto.name,
+          data: coinChartData.map((val) => val.y),
+          borderColor: "rgb(53, 162, 235)",
+          backgroundColor: "rgba(53, 162, 235, 0.5)",
+        },
+      ],
+    };
+  
+    
 
-const HistoryChart = () => {
-  const { response } = useAxios(`coins/${secondId}/market_chart?vs_currency=usd&days=${days}`);
-  
-  if(!response) {
     return (
-      <div className="wrapper-container mt-8">
-        <Skeleton className="h-72 w-full mb-10" />
+      <div>
+        {coinChartData.length > 0 ? (
+          <Line options={options} data={data} />
+        ) : (
+          <div className="wrapper-container mt-8">
+            <Skeleton className="h-72 w-full mb-10" />
+          </div>
+        )}
       </div>
-    )
-  }
-
-  const coinChartData = response.prices.map(value => ({ x: value[0], y: value[1].toFixed(2) }));
-  
-  const options = {
-    type: 'line',
-    responsive: true,
-    plugins: {
-      legend: {
-        labels: {
-          color: 'white'
-        }
-      }
-    },
-    scales: {
-      x: {
-        ticks: {
-          color: 'white'
-        }
-      },
-      y: {
-        ticks: {
-          color: 'white'
-        }
-      }
-    }
+    );
   };
-  const data = {
-    labels: coinChartData.map(value => moment(value.x).format('DD / MM / YYYY')),
-    datasets: [
-      {
-        label: name,
-        pointStyle: false,
-        data: coinChartData.map(val => val.y),
-        borderColor: '#FCC81C',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      }
-    ]
-  }
 
-  return (
-    <div>
-      <Line options={options} data={data} />
-    </div>
-  )
-  
-}
-
+  const handleIntervalClick = (value) => {
+    setInterval(value);
+    const intervalStart = {
+      "1d": moment().subtract(1, "days"),
+      "7d": moment().subtract(7, "days"),
+      "14d": moment().subtract(14, "days"),
+      "30d": moment().subtract(30, "days"),
+      "90d": moment().subtract(90, "days"),
+      "365d": moment().subtract(365, "days"),
+    };
+    setStart(intervalStart[value].format("YYYY-MM-DD"));
+  };
    
   return (
     <div>
       <div className="one-crypto-container">
         <div className="one-crypto-left">
        
-            <img src={image} alt="" className="one-crypto-image"/>
+            <img src={crypto.logo} alt="" className="one-crypto-image"/>
             <div className="one-crypto-left-container">
-            <p className="one-crypto-name">{name}</p>
+            <p className="one-crypto-name">{crypto.name}</p>
             <div className="one-crypto-star-container">
-              <p className="one-crypto-symbol">{symbol ? symbol.toUpperCase() : ""}</p>
+              <p className="one-crypto-symbol">{crypto.symbol}</p>
               <FaStar
               color={isLiked ? "yellow" : "white"}
               fontSize="35px"
@@ -283,12 +276,12 @@ const HistoryChart = () => {
       <div className="one-crypto-right">
           <p className="one-crypto-price">{price}</p>
           <p className={
-              percentChange >= 0
+              crypto.percent_change_24h >= 0
                 ? "one-crypto-percent-positif"
                 : "one-crypto-percent-negatif"
             }>
-        {percentChange > 0 ? "+" : ""}
-        {percentChange}%
+        {crypto.percent_change_24h > 0 ? "+" : ""}
+        {crypto.percent_change_24h}%
       </p>
           
         </div>
@@ -296,14 +289,21 @@ const HistoryChart = () => {
    
     </div>
     <div className="one-crypto-days-change">
-        <button onClick={handleButtonClick} value="1D">24H</button>
-        <button onClick={handleButtonClick} value="7D">7D</button>
-        <button onClick={handleButtonClick} value="14D">14D</button>
-        <button onClick={handleButtonClick} value="30D">30D</button>
-        <button onClick={handleButtonClick} value="60D">60D</button>
-        <button onClick={handleButtonClick} value="200D">200D</button>
-        <button onClick={handleButtonClick} value="365D">1Y</button>
-        <button onClick={handleButtonClick} value="max">All</button>
+      <button onClick={() => handleIntervalClick("7d")} value="7d">
+        7D
+      </button>
+      <button onClick={() => handleIntervalClick("14d")} value="14d">
+        14D
+      </button>
+      <button onClick={() => handleIntervalClick("30d")} value="30d">
+        30D
+      </button>
+      <button onClick={() => handleIntervalClick("90d")} value="90d">
+        90D
+      </button>
+      <button onClick={() => handleIntervalClick("365d")} value="365d">
+        1Y
+      </button>
         </div>
     <HistoryChart/>
     </div>

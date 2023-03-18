@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../styles/CryptoList.css";
 import FilterBar from "./FilterBar";
-import { useRecoilState } from "recoil";
+import { useRecoilState, atom } from "recoil";
 import { userStateLogin } from "../pages/Login";
 import { FaStar } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-import useAxios from "../hooks/useAxios";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -34,23 +33,80 @@ ChartJS.register(
   Filler,
   Legend
 );
+export const cryptoDataState = atom({
+  key: "cryptoDataState",
+  default: [],
+});
 
 function useCoinGeckoData() {
-  const [cryptoData, setCryptoData] = useState([]);
+  const [cryptoData, setCryptoData] = useRecoilState(cryptoDataState);
 
   useEffect(() => {
-    fetch(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=4&page=1&sparkline=false"
-    )
-      .then((response) => response.json())
-      .then((data) => setCryptoData(data))
-      .catch((error) => console.log("error", error));
-  }, []);
+    const fetchData = async () => {
+      let storedData = localStorage.getItem("cryptoData");
+      if (storedData) {
+        setCryptoData(JSON.parse(storedData));
+        console.log("from local store");
+      } else {
+        // Fetch data from API
+        const response = await fetch("https://api.coinpaprika.com/v1/coins");
+        const data = await response.json();
+        const topTenCryptos = data.slice(0, 2);
+        console.log("from api");
+        const cryptoData = await Promise.all(
+          topTenCryptos.map((crypto) =>
+            fetch(`https://api.coinpaprika.com/v1/coins/${crypto.id}`).then(
+              (response) => response.json()
+            )
+          )
+        );
+
+        const tickersResponse = await fetch(
+          "https://api.coinpaprika.com/v1/tickers"
+        );
+        const tickers = await tickersResponse.json();
+
+        const prices = {};
+        const percentChanges = {};
+
+        tickers.forEach((ticker) => {
+          prices[ticker.id] = ticker.quotes.USD.price;
+          percentChanges[ticker.id] = ticker.quotes.USD.percent_change_24h;
+        });
+
+        // Merging price and percent change data with crypto data
+        const cryptoDataWithPriceAndPercentChange = cryptoData.map((crypto) => ({
+          ...crypto,
+          price: prices[crypto.id],
+          percent_change_24h: percentChanges[crypto.id],
+        }));
+
+        // Save data to localStorage
+        localStorage.setItem(
+          "cryptoData",
+          JSON.stringify(cryptoDataWithPriceAndPercentChange)
+        );
+
+        // Update state with fetched data
+        setCryptoData(cryptoDataWithPriceAndPercentChange);
+      }
+    };
+
+    // Fetch data on mount and then update it every hour
+    fetchData();
+    const intervalId = setInterval(() => {
+      fetchData();
+    }, 60 * 60 * 1000);
+
+    // Clear interval on unmount
+    return () => clearInterval(intervalId);
+  }, [setCryptoData]);
 
   return cryptoData;
 }
 
 function CryptoItem({ crypto, currency }) {
+  console.log(crypto);
   const [user, setUser] = useRecoilState(userStateLogin);
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -84,12 +140,12 @@ function CryptoItem({ crypto, currency }) {
     }
   }, [crypto.id, user]);
 
-  const price = parseFloat(crypto.current_price).toLocaleString("en-US", {
+  const price = parseFloat(crypto.price).toLocaleString("en-US", {
     style: "currency",
     currency: currency,
   });
   const percentChange = (
-    parseFloat(crypto.price_change_percentage_24h) * 1
+    parseFloat(crypto.percent_change_24h) * 1
   ).toFixed(2);
 
   // function isCryptoLiked(crypto, user) {
@@ -136,43 +192,77 @@ function CryptoItem({ crypto, currency }) {
     }
   };
 
-  const HistoryChart = () => {
-    const { response } = useAxios(
-      `coins/${crypto.id}/market_chart?vs_currency=usd&days=1`
-    );
-
-    if (!response) {
-      return (
-        <div className="wrapper-container mt-8">
-          <Skeleton className="h-72 w-full mb-10" />
-        </div>
-      );
-    }
-    const coinChartData = response.prices.map((value) => ({
-      x: value[0],
-      y: value[1].toFixed(2),
-    }));
-
-    const options = {
-      type: "line",
-      responsive: true,
-    };
-    const data = {
-      labels: coinChartData.map((value) => moment(value.x).format("MMM DD")),
-      datasets: [
-        {
-          pointStyle: false,
-          label: crypto.id,
-          data: coinChartData.map((val) => val.y),
-          borderColor: "rgb(53, 162, 235)",
-          backgroundColor: "rgba(53, 162, 235, 0.5)",
-        },
-      ],
-    };
-
+    const HistoryChart = () => {
+      const [coinChartData, setCoinChartData] = useState([]);
+    
+      const fetchData = async () => {
+        try {
+          const start = moment().subtract(168, "hours").format("YYYY-MM-DD");
+          const response = await axios.get(
+            `https://api.coinpaprika.com/v1/tickers/${crypto.id}/historical?start=${start}&interval=1d`
+          );
+          const chartData = response.data.map((value) => ({
+            x: new Date(value.timestamp).getTime(),
+            y: value.price.toFixed(2),
+          }));
+          setCoinChartData(chartData);
+    
+          // Save data to localStorage
+          localStorage.setItem(
+            `coinChartData-${crypto.id}`,
+            JSON.stringify(chartData)
+          );
+        } catch (error) {
+          console.log("Error fetching chart data: ", error);
+        }
+      };
+    
+      useEffect(() => {
+        // Check if chart data is in localStorage
+        const storedData = localStorage.getItem(`coinChartData-${crypto.id}`);
+        if (storedData) {
+          setCoinChartData(JSON.parse(storedData));
+          console.log("chart local");
+        } else {
+          fetchData();
+          console.log("chart api");
+        }
+      }, []);
+    
+      useEffect(() => {
+        const intervalId = setInterval(() => {
+          fetchData();
+        }, 60 * 60 * 1000);
+    
+        return () => clearInterval(intervalId);
+      }, []);
+    
+      const options = {
+        type: "line",
+        responsive: true,
+      };
+      const data = {
+        labels: coinChartData.map((value) => moment(value.x).format("MMM DD")),
+        datasets: [
+          {
+            pointStyle: false,
+            label: crypto.name,
+            data: coinChartData.map((val) => val.y),
+            borderColor: "rgb(53, 162, 235)",
+            backgroundColor: "rgba(53, 162, 235, 0.5)",
+          },
+        ],
+      };
+  
     return (
       <div>
-        <Line options={options} data={data} />
+        {coinChartData.length > 0 ? (
+          <Line options={options} data={data} />
+        ) : (
+          <div className="wrapper-container mt-8">
+            <Skeleton className="h-72 w-full mb-10" />
+          </div>
+        )}
       </div>
     );
   };
@@ -188,11 +278,11 @@ function CryptoItem({ crypto, currency }) {
     <div className={percentChange >= 0 ? "crypto-item" : "crypto-item-negatif"}>
       <div className="crypto-item-info">
         <div className="crypto-item-left">
-          <img src={crypto.image} alt="" className="crypto-item-img" />
+          <img src={crypto.logo} alt="" className="crypto-item-img" />
           <p className="ctypto-item-name" onClick={() => handleCryptoClick(crypto.id)}>{crypto.name}</p>
           <div className="crypto-item-more">
             <p className="crypto-item-abr">{crypto.symbol.toUpperCase()}</p>
-            <p className="crypto-item-abr">24H</p>
+            <p className="crypto-item-abr">7D</p>
           </div>
         </div>
         <div className="crypto-item-right">
