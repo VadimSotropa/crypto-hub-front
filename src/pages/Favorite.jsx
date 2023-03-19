@@ -347,7 +347,7 @@ function CryptoItem({ crypto, currency }) {
       <div className="crypto-item-info">
         <div className="crypto-item-left">
           <img src={crypto.logo} alt="" className="crypto-item-img" />
-          <p className="ctypto-item-name" onClick={() => handleCryptoClick(crypto.id)}>{crypto.name}</p>
+          <p className="ctypto-item-name" onClick={() => handleCryptoClick(crypto.id)}> {crypto.name.length > 8 ? `${crypto.name.slice(0, 8)}...` : crypto.name}</p>
           <div className="crypto-item-more">
             <p className="crypto-item-abr">{crypto.symbol.toUpperCase()}</p>
             <p className="crypto-item-abr">24h</p>

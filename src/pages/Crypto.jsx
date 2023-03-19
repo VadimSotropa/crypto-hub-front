@@ -34,17 +34,17 @@ ChartJS.register(
   Legend
 );
 
-
 function CryptoItem() {
-  const location = useLocation();
-  const id = location.pathname.split("/")[2];
   const [cryptoData, setCryptoData] = useState(null);
 
+  const location = useLocation();
+  const id = location.pathname.split('/')[2];
+  const secondId = id;
   
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const cryptoDataResponse = await axios.get(`https://api.coinpaprika.com/v1/coins/${id}`);
+        const cryptoDataResponse = await axios.get(`https://api.coinpaprika.com/v1/coins/${secondId}`);
         const cryptoData = cryptoDataResponse.data;
         console.log('data', cryptoData);
         const tickersResponse = await axios.get("https://api.coinpaprika.com/v1/tickers");
@@ -72,16 +72,31 @@ function CryptoItem() {
       }
     };
   
-    fetchData();
-  
-    // Reload the data every 10 seconds
-    const intervalId = setInterval(() => {
+    if (secondId) {
       fetchData();
-    }, 10000);
+    }
+  }, [secondId]);
   
-    // Clean up the interval when the component unmounts or when the ID changes
-    return () => clearInterval(intervalId);
-  }, [id]);
+  let name, image, priceNew, symbol, nameLower, percent;
+  
+  if (cryptoData) {
+    name = cryptoData.name;
+    nameLower = cryptoData.id;
+    console.log(nameLower);
+    image = cryptoData.logo;
+    priceNew = cryptoData.price;
+    percent = cryptoData.percent_change_24h
+    symbol = cryptoData.symbol;
+  } else {
+    // Handle the case where data hasn't been fetched yet
+    name = '';
+    nameLower = '';
+    image = '';
+    priceNew = '';
+    symbol = '';
+  }
+
+
   const [user, setUser] = useRecoilState(userStateLogin);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -98,7 +113,7 @@ function CryptoItem() {
           }
         );
 
-        if (response.data.likedArticles.includes(crypto.id)) {
+        if (response.data.likedArticles.includes(nameLower)) {
           setIsLiked(true);
         }
       } catch (error) {
@@ -109,16 +124,18 @@ function CryptoItem() {
     if (user.token && user.likedArticles) {
       checkLikedStatus();
     }
-  }, [user]);
+  }, [user, nameLower]);
  
 
 
-  const price = parseFloat(cryptoData.price).toLocaleString("en-US", {
+  const price = parseFloat(priceNew).toLocaleString("en-US", {
     style: "currency",
     currency: "USD",
   });
 
-
+  const percentChange = (
+    parseFloat(percent) * 1
+  ).toFixed(2);
   const handleLikeClick = () => {
     if (!user) {
       return;
@@ -127,7 +144,7 @@ function CryptoItem() {
     if (isLiked) {
       axios
         .delete("https://cryptohub-auth-app.herokuapp.com/Like", {
-          data: { token: user.token, article: crypto.id },
+          data: { token: user.token, article: nameLower },
         })
         .then((response) => {
           console.log(response.data); // handle response data
@@ -141,7 +158,7 @@ function CryptoItem() {
       axios
         .post("https://cryptohub-auth-app.herokuapp.com/Like", {
           token: user.token,
-          article: crypto.id,
+          article: nameLower,
         })
         .then((response) => {
           console.log(response.data); // handle response data
@@ -185,47 +202,34 @@ function CryptoItem() {
     } 
   };
 
-  
 
+  
   const HistoryChart = () => {
     const [coinChartData, setCoinChartData] = useState([]);
   
+
     const fetchData = async () => {
       try {
-      
-        const response = await axios.get(
-          `https://api.coinpaprika.com/v1/tickers/${id}/historical?start=${start}&interval=1d`
-        );
+        const response = await axios.get(`https://api.coinpaprika.com/v1/tickers/${secondId}/historical?start=${start}&interval=1d`);
         const chartData = response.data.map((value) => ({
           x: new Date(value.timestamp).getTime(),
           y: value.price.toFixed(2),
         }));
         setCoinChartData(chartData);
   
-        // Save data to localStorage
-        localStorage.setItem(
-          `coinChartData-${crypto.id}`,
-          JSON.stringify(chartData)
-        );
+        localStorage.setItem(`coinChartData-${secondId} ${start}`, JSON.stringify(chartData));
       } catch (error) {
         console.log("Error fetching chart data: ", error);
       }
     };
   
     useEffect(() => {
-      // Check if chart data is in localStorage
-      const storedData = localStorage.getItem(`coinChartData-${id}`);
-      
+      const storedData = localStorage.getItem(`coinChartData-${secondId} ${start}`);
       if (storedData) {
         setCoinChartData(JSON.parse(storedData));
-        console.log("chart local");
-        
       } else {
         fetchData();
-        console.log("chart api");
-        
       }
-
     }, []);
   
     useEffect(() => {
@@ -267,17 +271,16 @@ return (
 };
 
 
-
   return (
     <div>
       <div className="one-crypto-container">
         <div className="one-crypto-left">
        
-            <img src={cryptoData.logo} alt="" className="one-crypto-image"/>
+            <img src={image} alt="" className="one-crypto-image"/>
             <div className="one-crypto-left-container">
-            <p className="one-crypto-name">{cryptoData.name}</p>
+            <p className="one-crypto-name">{name}</p>
             <div className="one-crypto-star-container">
-              <p className="one-crypto-symbol">{cryptoData.symbol}</p>
+              <p className="one-crypto-symbol">{symbol}</p>
               <FaStar
               color={isLiked ? "yellow" : "white"}
               fontSize="35px"
@@ -293,12 +296,12 @@ return (
       <div className="one-crypto-right">
           <p className="one-crypto-price">{price}</p>
           <p className={
-              cryptoData.percent_change_24h >= 0
+              percentChange >= 0
                 ? "one-crypto-percent-positif"
                 : "one-crypto-percent-negatif"
             }>
-        {cryptoData.percent_change_24h > 0 ? "+" : ""}
-        {cryptoData.percent_change_24h}%
+        {percentChange > 0 ? "+" : ""}
+        {percentChange}%
       </p>
           
         </div>

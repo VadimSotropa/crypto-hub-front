@@ -426,12 +426,12 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    gap: 30px;
+    gap: 10px;
     justify-content: space-between;
   }
   
   .crypto-item {
-    width: 380px;
+    width: 300px;
     height: 315px;
     background: rgba(26, 137, 23, 0.2);
     border: 3px solid #00d963;
@@ -441,7 +441,7 @@
   }
   
   .crypto-item-negatif {
-    width: 380px;
+    width: 300px;
     height: 315px;
     background: rgba(231, 51, 12, 0.2);
     border: 3px solid #b30100;

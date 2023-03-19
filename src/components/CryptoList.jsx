@@ -46,8 +46,16 @@ function useCoinGeckoData() {
     const fetchData = async () => {
       let storedData = localStorage.getItem("cryptoData");
       if (storedData) {
-        setCryptoData(JSON.parse(storedData));
+        const parsedData = JSON.parse(storedData);
+        setCryptoData(parsedData);
         console.log("from local store");
+        // Check if data needs to be updated
+        const lastUpdated = localStorage.getItem("lastUpdated");
+        if (lastUpdated && Date.now() - lastUpdated > 10 * 60 * 1000) {
+          console.log("updating data");
+          localStorage.removeItem("cryptoData");
+          localStorage.removeItem("lastUpdated");
+        }
       } else {
         // Fetch data from API
         const response = await fetch("https://api.coinpaprika.com/v1/coins");
@@ -87,25 +95,26 @@ function useCoinGeckoData() {
           "cryptoData",
           JSON.stringify(cryptoDataWithPriceAndPercentChange)
         );
+        localStorage.setItem("lastUpdated", Date.now());
+        
+        // Set interval to delete data from local storage every 10 minutes
+        setInterval(() => {
+          console.log('deleting data from local storage');
+          localStorage.removeItem("cryptoData");
+          localStorage.removeItem("lastUpdated");
+        }, 10 * 60 * 1000);
 
         // Update state with fetched data
         setCryptoData(cryptoDataWithPriceAndPercentChange);
       }
     };
 
-    // Fetch data on mount and then update it every hour
+    // Fetch data on mount
     fetchData();
-    const intervalId = setInterval(() => {
-      fetchData();
-    }, 60 * 60 * 1000);
-
-    // Clear interval on unmount
-    return () => clearInterval(intervalId);
   }, [setCryptoData]);
 
   return cryptoData;
 }
-
 function CryptoItem({ crypto, currency }) {
  
 
@@ -239,7 +248,7 @@ function CryptoItem({ crypto, currency }) {
       useEffect(() => {
         const intervalId = setInterval(() => {
           fetchData();
-        }, 60 * 60 * 1000);
+        }, 10 * 60 * 1000);
     
         return () => clearInterval(intervalId);
       }, []);
@@ -287,7 +296,9 @@ function CryptoItem({ crypto, currency }) {
       <div className="crypto-item-info">
         <div className="crypto-item-left">
           <img src={crypto.logo} alt="" className="crypto-item-img" />
-          <p className="ctypto-item-name" onClick={() => handleCryptoClick(crypto.id)}>{crypto.name}</p>
+          <p className="ctypto-item-name" onClick={() => handleCryptoClick(crypto.id)}>
+  {crypto.name.length > 8 ? `${crypto.name.slice(0, 8)}...` : crypto.name}
+</p>
           <div className="crypto-item-more">
             <p className="crypto-item-abr">{crypto.symbol.toUpperCase()}</p>
             <p className="crypto-item-abr">7D</p>
