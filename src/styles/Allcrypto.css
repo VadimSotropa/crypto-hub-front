@@ -777,6 +777,7 @@
         -webkit-appearance: none;
         appearance: none;
         cursor: pointer;
+       
     }
     
     .curencyList:hover{
@@ -795,14 +796,16 @@
       justify-content: space-between;
       justify-content: center;
       align-items: center;
+      
     }
     
     .cryptoListItem {
-      width: calc(33% - 10px);
+      width: calc(33.33% - 10px);
       margin-bottom: 10px;
       color: white;
       cursor: pointer;
       display: flex;
+      justify-content: center;
     }
     .cryptoListItem:hover {
       text-decoration: underline;

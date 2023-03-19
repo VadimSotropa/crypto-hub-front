@@ -278,7 +278,7 @@ return (
        
             <img src={image} alt="" className="one-crypto-image"/>
             <div className="one-crypto-left-container">
-            <p className="one-crypto-name">{name}</p>
+            <p className="one-crypto-name">{name} </p>
             <div className="one-crypto-star-container">
               <p className="one-crypto-symbol">{symbol}</p>
               <FaStar
