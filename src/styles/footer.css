@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+  /* /* Mobile Devices / */
+@media only screen and (max-width: 480px) {
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+  body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #1C252A;
+      margin: 0 20px;
+      font-family: 'Fira Code', monospace;
+      color: white;
+  }
+  
+  
+ 
+}
+
+/* /* Tablets / */
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+  body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #1C252A;
+      margin: 0 20px;
+      font-family: 'Fira Code', monospace;
+      color: white;
+  }
+  
+  
+  
+  
+}
+
+/* /* Small Screens and Laptops / */
+@media only screen and (min-width: 769px) and (max-width: 1270px) {
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+  body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #1C252A;
+      margin: 0 20px;
+      font-family: 'Fira Code', monospace;
+      color: white;
+  }
+  
+
+ 
+
+}
+
+/* /* Desktops and Large Screens / */
+@media only screen and (min-width: 1269px) and (max-width: 1501px) {
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+  body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #1C252A;
+      margin: 0 200px;
+      font-family: 'Fira Code', monospace;
+      color: white;
+  }
+  
+  
+  .footer-container{
+    padding: 100px 0 10px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+ .footer-link{
+    color: #FCC81C;
+
+ }
+.footer-right-container{
+    text-align: right;
+}
+
+  
+}
+/* 
+/* Extra Large Screens and TV / */
+@media only screen and (min-width: 1501px) {
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+  body{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #1C252A;
+      margin: 0 200px;
+      font-family: 'Fira Code', monospace;
+      color: white;
+  }
+  
+  
+  
+ 
+  
+}

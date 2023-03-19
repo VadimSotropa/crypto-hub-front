@@ -383,6 +383,7 @@ export default function CryptoList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortType, setSortType] = useState("");
   const cryptoData = useCoinGeckoData();
+  // eslint-disable-next-line no-unused-vars
   const [displayedCrypto, setDisplayedCrypto] = useState([]);
   const [currency, setCurrency] = useState("USD");
 

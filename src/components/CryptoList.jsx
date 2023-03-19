@@ -326,7 +326,9 @@ function CryptoItem({ crypto, currency }) {
       <Toaster />
       
       <HistoryChart />
+      
     </div>
+    
   );
 }
 
@@ -415,6 +417,7 @@ export default function CryptoList() {
           /> // Pass currency as prop to CryptoItem
         ))}
       </div>
+     
     </div>
   );
 }

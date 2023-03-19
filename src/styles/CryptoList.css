@@ -428,6 +428,7 @@
     width: 100%;
     gap: 10px;
     justify-content: space-between;
+    margin-bottom: 20px;
   }
   
   .crypto-item {
@@ -542,6 +543,8 @@
   
     color: white;
   }
+
+ 
   
 }
 
@@ -563,6 +566,7 @@
     width: 100%;
     gap: 30px;
     justify-content: space-between;
+    
   }
   
   .crypto-item {
