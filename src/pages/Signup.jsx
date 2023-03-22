@@ -4,6 +4,8 @@ import axios from "axios";
 import "../styles/signup.css";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer"
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Register() {
   const navigate = useNavigate();
@@ -19,6 +21,10 @@ export default function Register() {
   };
 
   const handleSubmit = async (e) => {
+    if (!e.target.email || !e.target.password || !e.target.name) {
+      toast.error('Please fill in all required fields!');
+      return;
+    }
     e.preventDefault();
 
     try {
@@ -29,7 +35,10 @@ export default function Register() {
       console.log(response.data);
       navigate("/Login");
     } catch (error) {
-      console.log(error.response.data);
+      if (error.response && error.response.status === 400 && error.response.data.message === 'Email already exists') {
+        // Display error toast message
+        toast.error('Email already exists!');
+      }
     }
   };
 
@@ -101,6 +110,7 @@ export default function Register() {
           </Link>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

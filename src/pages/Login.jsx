@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import '../styles/signup.css'
 import { atom, useRecoilState } from 'recoil';
 import toast, { Toaster } from 'react-hot-toast';
-
+import Footer from "../components/Footer"
 
 const userStateLogin = atom({
   key: 'userStateLogin',
@@ -111,6 +111,7 @@ export default function Register() {
 
 </div>
     </div>
+    <Footer/>
    </div>
   );
 }

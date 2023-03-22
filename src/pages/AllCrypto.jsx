@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import "../styles/HeaderHome.css";
 import "../styles/Allcrypto.css";
 import { useNavigate } from "react-router-dom";
-
+import Footer from "../components/Footer"
 export default function AllCrypto({
   handleSort,
   handleCurrencyChange,
@@ -125,6 +125,7 @@ console.log('filtred list', filteredCryptoList);
   </div>
 ))}
       </div>
+      <Footer/>
     </div>
   );
 }

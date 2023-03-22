@@ -432,7 +432,7 @@
   }
   
   .crypto-item {
-    width: 300px;
+    width: 280px;
     height: 315px;
     background: rgba(26, 137, 23, 0.2);
     border: 3px solid #00d963;
@@ -442,7 +442,7 @@
   }
   
   .crypto-item-negatif {
-    width: 300px;
+    width: 280px;
     height: 315px;
     background: rgba(231, 51, 12, 0.2);
     border: 3px solid #b30100;
