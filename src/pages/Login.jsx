@@ -29,6 +29,10 @@ export default function Register() {
   };
 
   const handleSubmit = async (e) => {
+    if (!e.target.email || !e.target.password) {  
+      toast.error('Please fill in all required fields!');
+      return;
+    }
     e.preventDefault();
 
     try {

@@ -21,7 +21,7 @@ export default function Register() {
   };
 
   const handleSubmit = async (e) => {
-    if (!e.target.email || !e.target.password || !e.target.name) {
+    if (!e.target.email || !e.target.password || !e.target.name) {  
       toast.error('Please fill in all required fields!');
       return;
     }
