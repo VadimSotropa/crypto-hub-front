@@ -21,10 +21,7 @@ export default function Register() {
   };
 
   const handleSubmit = async (e) => {
-    if (!e.target.email || !e.target.password || !e.target.name) {  
-      toast.error('Please fill in all required fields!');
-      return;
-    }
+   
     e.preventDefault();
 
     try {
@@ -57,6 +54,7 @@ export default function Register() {
               value={user.name}
               onChange={handleChange}
               placeholder="Name"
+              required
             />
           </div>
           <div>
@@ -68,6 +66,7 @@ export default function Register() {
               value={user.email}
               onChange={handleChange}
               placeholder="Email"
+              required
             />
           </div>
           <div>
@@ -79,6 +78,7 @@ export default function Register() {
               value={user.password}
               onChange={handleChange}
               placeholder="Password"
+              required
             />
           </div>
           <div className="termsText">

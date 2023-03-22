@@ -29,12 +29,9 @@ export default function Register() {
   };
 
   const handleSubmit = async (e) => {
-    if (!e.target.email || !e.target.password) {  
-      toast.error('Please fill in all required fields!');
-      return;
-    }
+   
     e.preventDefault();
-
+   
     try {
       const response = await axios.post(
         'https://cryptohub-auth-app.herokuapp.com/login',
@@ -66,8 +63,9 @@ export default function Register() {
       
       navigate('/Favorite');
     } catch (error) {
+      
       console.log(error.response.data);
-      toast.error('Frong email or password')
+      toast.error('Vrong email or password')
     }
   };
 
@@ -87,6 +85,7 @@ export default function Register() {
             value={user.email}
             onChange={handleChange}
             placeholder="Email"
+            required
           />
         </div>
         <div>
@@ -99,6 +98,7 @@ export default function Register() {
             value={user.password}
             onChange={handleChange}
             placeholder="Password"
+            required
           />
         </div>
         
