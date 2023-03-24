@@ -14,8 +14,34 @@
       color: white;
   }
   
-  
- 
+  .footer-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .footer-rigts-text{
+    font-size: 15px;
+    text-align: center;
+    
+  }
+ .footer-developed-text{
+  font-size: 15px;
+  text-align: center;
+ }
+
+ .footer-contact-link{
+  font-size: 15px;
+  text-align: center;
+ }
+
+ .footer-link{
+  color: #FCC81C;
+ }
+
 }
 
 /* /* Tablets / */

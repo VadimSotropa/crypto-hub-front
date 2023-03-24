@@ -3,36 +3,41 @@
   @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
 
-  body{
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      background-color: #1C252A;
-      margin: 0 20px;
-      font-family: 'Fira Code', monospace;
-      
+  .main-container-navbar{
+    min-width: 100% !important;
+   position: fixed;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   background-color: #1c252a;
+   margin-left: -20px;
+   margin-right: -20px;
+   height: 40px;
+   top: 0;
+   padding-top: 10px;
+   padding-bottom: 10px;
   }
-  
   .NavContainer{
-    padding-top: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 40px;
-      position: fixed;
-      top: 0;
-      background-color: #1C252A;
-      width: 100%;
-      padding-bottom: 5px;
-
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+     width: 100%;
+     padding-left: 20px;
+padding-right: 20px;
   }
+
+
+  
   .three-bar-menu{
-    padding-right: 30px;
-    width: 30px;
+ position: fixed;
+ left: 87vw;
+   padding: 0 !important;
+   margin: 0 !important;
   }
   .Nav-items{
       display: flex;
-    
+    justify-content: space-between;
+    align-items: center;
      
   }
   
@@ -129,6 +134,7 @@
   cursor: pointer;
   color: #1C252A;
   text-decoration: none;
+
   }
 
   .mobileMenu {
@@ -136,11 +142,13 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 250px;
-    background-color: #69747a;
+    height: 210px;
+    background-color: #1c252a ;
     z-index: 9999;
     display: flex;
     flex-direction: column;
+    border-radius: 0 0 10px 10px;
+    
     }
     
     .mobileMenuHeader {
@@ -162,7 +170,9 @@
     cursor: pointer;
     margin-right: 20px;
     outline: none;
-    color: black;
+    color: white;
+    position: fixed;
+    left: 82vw;
     }
     
     .mobileMenuItems {
@@ -170,7 +180,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 60%;
+    height: 50%;
     gap: 30px;
    
     }
@@ -202,7 +212,7 @@
     padding: 5px 10px;
     width: 62px;
     height: 28px;
-    background: white;
+    background: #FCC81C;
     border-radius: 2px;
     font-family: "Fira Code";
     font-style: normal;
@@ -386,7 +396,7 @@
     border: none;
     font-size: 30px;
     cursor: pointer;
-    margin-right: 20px;
+  
     }
     
     .mobileMenuItems {

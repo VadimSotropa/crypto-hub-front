@@ -50,7 +50,7 @@ export default function Navbar() {
   };
 
   return (
-    <div> 
+    <div className="main-container-navbar"> 
       {user.token ? (
          <div className="NavContainer">
          <Link className={"link-logo"} to={"/"}>
@@ -68,9 +68,6 @@ export default function Navbar() {
            <Link className={"link"} to={"/AllCrypto"}>
              All Crypto
            </Link>
-           {/* <Link className={"link"} to={"/Exchange"}>
-             Exchange rates
-           </Link> */}
            <Link className={"link"} to={"/Favorite"}>
              Favorite
            </Link>
@@ -83,6 +80,9 @@ export default function Navbar() {
           </div>
         </div>
       ) : (
+        <div className="mobil-navbar-login-user">
+
+     
         <div className="NavContainer">
           <Link className={"link-logo"} to={"/"}>
             <img src={logo} alt="" className="image-logo"/>
@@ -116,6 +116,7 @@ export default function Navbar() {
                 Login
               </Link>
             </div>
+          </div>
           </div>
         </div>
         

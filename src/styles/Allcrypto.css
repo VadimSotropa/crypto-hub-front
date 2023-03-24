@@ -185,22 +185,26 @@
   
     .titleMainAllContainer{
       display: flex;
-      justify-content: space-between;
+      flex-direction: column !important;
       align-items: center;
-      margin-top: 45px;
+      justify-content: center;
+      padding-top: 60px;
+      
+      flex-direction: row;
      
     }
   
     .svg {
-      width: 414px;
+      width: 100vw !important;
+ margin-bottom: 10px;
     }
     
     .titleMainAll{
-      font-size: 15px;
+      font-size: 20px;
     color: white;
     font-style: normal;
     font-weight: 600;
-    width: 414px;
+    text-align: center;
     }
   
     .containerFilterAll{
@@ -208,7 +212,6 @@
       justify-content: space-between;
       margin-bottom: 30px;
       flex-direction: column;
-      gap: 10px;
     }
 }
 

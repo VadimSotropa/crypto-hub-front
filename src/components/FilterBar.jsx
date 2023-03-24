@@ -41,19 +41,20 @@ export default function FilterBar({
           />
         </div>
         <div className="btnContianerFilter">
-          <button
-            className={`itemBTN ${sortType === "rank" ? "active" : ""}`}
-            onClick={handleSort}
-            value="rank"
-          >
-           Rank
-          </button>
+          
           <button
             className={`itemBTN ${sortType === "top_gainer" ? "active" : ""}`}
             onClick={handleSort}
             value="top_gainer"
           >
             Top Gainer
+          </button>
+          <button
+            className={`itemBTN ${sortType === "rank" ? "active" : ""}`}
+            onClick={handleSort}
+            value="rank"
+          >
+           Rank
           </button>
           <button
             className={`itemBTN ${sortType === "top_loser" ? "active" : ""}`}

@@ -1,4 +1,60 @@
-body{
+
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
+@media only screen and (max-width: 483px) {
+  /* Styles for screens with max-width of 483px */
+  body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #1C252A;
+    margin: 0 20px;
+    font-family: 'Fira Code', monospace;
+}
+
+
+.LoginFavorite-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.LoginFavorite-title{
+    padding-top: 30px;
+    font-size: 20px;
+   text-align: center;
+    color: white;
+    font-style: normal;
+    font-weight: 600;
+   
+}
+
+.LoginFavorite-btn{
+   width: 100px;
+   text-align:  center;
+    background: #FCC81C;
+    border-radius: 2px;
+    font-family: 'Fira Code';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    color: #1C252A;
+    text-decoration: none;
+height: 20px;
+padding: 10px;
+ 
+}
+}
+
+@media only screen and (min-width: 484px) and (max-width: 768px) {
+  /* Styles for screens with min-width of 484px and max-width of 768px */
+  body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -42,4 +98,152 @@ body{
 height: 20px;
 padding: 10px;
  
+}
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1270px) {
+  /* Styles for screens with min-width of 769px and max-width of 1270px */
+  body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #1C252A;
+    margin: 0 200px;
+    font-family: 'Fira Code', monospace;
+}
+
+
+.LoginFavorite-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.LoginFavorite-title{
+    padding-top: 120px;
+    font-size: 29px;
+    color: white;
+    font-style: normal;
+    font-weight: 600;
+    width: 778px;
+    height: 47px;
+}
+
+.LoginFavorite-btn{
+   width: 100px;
+   text-align:  center;
+    background: #FCC81C;
+    border-radius: 2px;
+    font-family: 'Fira Code';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    color: #1C252A;
+    text-decoration: none;
+height: 20px;
+padding: 10px;
+ 
+}
+}
+
+@media only screen and (min-width: 1269px) and (max-width: 1501px) {
+  /* Styles for screens with min-width of 1269px and max-width of 1501px */
+  body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #1C252A;
+    margin: 0 200px;
+    font-family: 'Fira Code', monospace;
+}
+
+
+.LoginFavorite-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.LoginFavorite-title{
+    padding-top: 120px;
+    font-size: 29px;
+    color: white;
+    font-style: normal;
+    font-weight: 600;
+    width: 778px;
+    height: 47px;
+}
+
+.LoginFavorite-btn{
+   width: 100px;
+   text-align:  center;
+    background: #FCC81C;
+    border-radius: 2px;
+    font-family: 'Fira Code';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    color: #1C252A;
+    text-decoration: none;
+height: 20px;
+padding: 10px;
+ 
+}
+}
+
+@media only screen and (min-width: 1501px) {
+  /* Styles for screens with min-width of 1501px */
+  body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #1C252A;
+    margin: 0 200px;
+    font-family: 'Fira Code', monospace;
+}
+
+
+.LoginFavorite-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.LoginFavorite-title{
+    padding-top: 120px;
+    font-size: 29px;
+    color: white;
+    font-style: normal;
+    font-weight: 600;
+    width: 778px;
+    height: 47px;
+}
+
+.LoginFavorite-btn{
+   width: 100px;
+   text-align:  center;
+    background: #FCC81C;
+    border-radius: 2px;
+    font-family: 'Fira Code';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    color: #1C252A;
+    text-decoration: none;
+height: 20px;
+padding: 10px;
+ 
+}
 }
